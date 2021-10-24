@@ -114,7 +114,28 @@ function App() {
                     Ingresar
                   </button>
                 </div>
-
+                   
+                <div style={{marginTop: "20%"}}>
+                  <style>
+                    {"\
+                      h6:hover{\
+                        text-decoration: solid underline 2px\
+                      }\
+                    "}
+                  </style>
+                  <a href="" style={{textDecoration: "none"}}>
+                    <h6
+                      className="card-subtitle text-muted"
+                      style={{
+                        textAlign: "left",
+                        fontWeight: 400,
+                        fontSize: 14,
+                      }}
+                    >
+                      ¿No tienes cuenta? <b>Registrate.</b>
+                    </h6>
+                  </a>
+                </div>
                 
               </fieldset>
             </form>
