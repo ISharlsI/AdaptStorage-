@@ -1,5 +1,7 @@
 import React, { Fragment, useRef, useState } from "react";
 
+const URL_REGISTRO = "http://localhost/AdaptStorage/registrar.php";
+
 //Función Mandar datos a PHP
 const enviarData = async (url, data) => {
   const resp = await fetch(url, {
@@ -10,21 +12,24 @@ const enviarData = async (url, data) => {
     }
   });
 
-  console.log(resp);
+    console.log(resp);
+    const json = await resp.json();
+    console.log(json);
 };
 
-export function Registro({ mostrarLogin }, props) {
+export function Registro({ mostrarLogin }) {
   const refUsuario = useRef(null);
   const refCorreo = useRef(null);
   const refPassword = useRef(null);
 
   const handleRegistro = () => {
     const data = {
-      usuario: refUsuario.current.value,
-      correo: refCorreo.current.value,
-      password: refPassword.current.value,
+      "usuario": refUsuario.current.value,
+      "correo": refCorreo.current.value,
+      "password": refPassword.current.value,
     };
     console.log(data);
+    enviarData (URL_REGISTRO, data);
   };
 
   return (

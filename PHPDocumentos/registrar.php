@@ -1,28 +1,33 @@
 <?php
+    header('Access-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+    header("Content-Type: text/html; charset=utf-8");
+    $method = $_SERVER['REQUEST_METHOD'];
 	include "conectar.php";
     $conn = conectarDB();
 	
-	$password= "456";
-	
-	
-	$usuario= "jose@correo.tic";
-	$nombre= "Jose";
-	$apellidos= "Jiménez Blanco";
+
+    $JSONData = file_get_contents("php://input");
+	$dataObject = json_decode($JSONData);       
+    
+    $conn->set_charset('utf8');
+    
+    $nombre = $dataObject-> usuario;
+	$usuario = $dataObject-> correo;
+	$password =	$dataObject-> password;
+
+
 	$idTipoUsuario= "2";	
 	$clave = password_hash($password, PASSWORD_DEFAULT);
 	
-	echo $password;
-	echo "<br/>";
-	echo $clave;
-	echo "<hr/>";
 	
 
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO usuarios (usuario, clave, nombre, apellidos, idTipoUsuario)
-VALUES ('$usuario', '$clave', '$nombre', '$apellidos', '$idTipoUsuario' )";
+$sql = "INSERT INTO usuarios (usuario, clave, nombre, idTipoUsuario)
+VALUES ('$usuario', '$clave', '$nombre', '$idTipoUsuario' )";
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
