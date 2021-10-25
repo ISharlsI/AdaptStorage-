@@ -26,17 +26,14 @@ $sql = "INSERT INTO usuarios (usuario, clave, nombre, idTipoUsuario)
 VALUES ('$usuario', '$clave', '$nombre', '$idTipoUsuario' )";
 $borrador = "DELETE FROM usuarios WHERE usuario = ''";
 
-
 if ($conn->query($sql) === TRUE) {
-  echo "New record created successfully";
+  echo json_encode(array('conectado'=>true, 'usuario' => $usuario, 'nombre' => $nombre));
 } else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+  echo json_encode(array('conectado'=>false, 'error' => 'Registro fallido vuelva a intentarlo.'));
 }
-if ($conn->query($borrador) === TRUE) {
-  echo "New record created successfully";
-} else {
-  echo "Error: " . $borrador . "<br>" . $conn->error;
-}
+
+//query($borrador);
+
 $conn->close();
 	
 //fuente https://www.w3schools.com/php/php_mysql_insert.asp
