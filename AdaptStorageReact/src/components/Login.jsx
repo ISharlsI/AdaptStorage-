@@ -1,9 +1,36 @@
 import React, {useRef} from 'react';
 
+const URL_LOGIN = "http://localhost/AdaptStorage/login.php";
+
+const enviarData = async (url, data)=>{
+    
+    const resp= await fetch(url,{
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    console.log(resp);
+    const json = await resp.json();
+    console.log(json);
+    
+}
 export function Login({mostrarRegistro}) {
 
     const refUsuario = useRef(null);
+    const refClave = useRef(null);
 
+    const handleLogin=()=>{
+        const data= {
+          "usuario": refUsuario.current.value,
+          "clave" : refClave.current.value
+
+        };
+        console.log(data);
+        enviarData (URL_LOGIN, data);
+    }
 
   return (
     <div
@@ -28,17 +55,16 @@ export function Login({mostrarRegistro}) {
         </svg>
         <h4 style={{ textAlign: "center", marginTop: "10px" }}>Login</h4>
         <div className="card-body">
-          {/*FORMULARIO DE REGISTRO DE USUARIO*/}
+          {/*FORMULARIO DE LOGIN DE USUARIO*/}
 
-          <form>
-            <fieldset>
+          
               <div className="form-group row">
                 <label for="email" className="col-sm-2 col-form-label">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="30"
                     fill="currentColor"
-                    class="bi bi-person"
+                    className="bi bi-person"
                     viewBox="0 0 16 16"
                   >
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
@@ -65,7 +91,7 @@ export function Login({mostrarRegistro}) {
                     xmlns="http://www.w3.org/2000/svg"
                     width="30"
                     fill="currentColor"
-                    class="bi bi-lock"
+                    className="bi bi-lock"
                     viewBox="0 0 16 16"
                   >
                     <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
@@ -77,6 +103,7 @@ export function Login({mostrarRegistro}) {
                     className="form-control"
                     id="password"
                     placeholder="Contraseña"
+                    ref={refClave}
                   />
                 </div>
               </div>
@@ -108,6 +135,7 @@ export function Login({mostrarRegistro}) {
               <br />
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <button
+                  onClick={handleLogin}
                   type="submit"
                   className="btn"
                   style={{
@@ -119,8 +147,7 @@ export function Login({mostrarRegistro}) {
                   Ingresar
                 </button>
               </div>
-            </fieldset>
-          </form>
+           
 
           <div style={{ marginTop: "20%" }}>
             <style>
