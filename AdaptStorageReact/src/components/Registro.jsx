@@ -79,7 +79,7 @@ export function Registro({ mostrarLogin }) {
                     id="usuario"
                     className="form-control"
                     aria-describedby="emailHelp"
-                    placeholder="Usuario"
+                    placeholder="Nombre"
                     style={{
                       textDecorationColor: "white",
                       //padding: 0,
