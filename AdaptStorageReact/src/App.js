@@ -1,4 +1,4 @@
-import logo from "./img/Logo_AdaptStorage.jpg";
+import logo from "./img/Logo_AdaptStorage_Negro.png";
 import "./App.css";
 import React, { Fragment, Component } from "react";
 import Login from "./components/Login";
