@@ -15,7 +15,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 	$pas =	$dataObject-> clave;
     
   if ($nueva_consulta = $mysqli->prepare("SELECT 
-  usuarios.nombre, usuarios.clave, usuarios.apellidos, usuarios.usuario, usuarios.idTipoUsuario, usuarios.id, tipo_usuario.etiquetaTipoUsuario, tipo_usuario.descripcionTipoUsuario 
+  usuarios.nombre, usuarios.clave, usuarios.usuario, usuarios.idTipoUsuario, usuarios.id, tipo_usuario.etiquetaTipoUsuario, tipo_usuario.descripcionTipoUsuario 
   FROM usuarios 
   INNER JOIN tipo_usuario ON usuarios.idTipoUsuario = tipo_usuario.idTipoUsuario
   WHERE usuario = ?")) {
@@ -28,7 +28,7 @@ $method = $_SERVER['REQUEST_METHOD'];
             if (password_verify($pas, $encriptado_db))
             {
                 $_SESSION['usuario'] = $datos['usuario'];
-                echo json_encode(array('conectado'=>true,'usuario'=>$datos['usuario'], 'nombre'=>$datos['nombre'],  'apellidos'=>$datos['apellidos'], 'id'=>$datos['id'], 'idTipoUsuario'=>$datos['idTipoUsuario'], 'etiquetaTipoUsuario'=>$datos['etiquetaTipoUsuario']  ) );
+                echo json_encode(array('conectado'=>true,'usuario'=>$datos['usuario'], 'nombre'=>$datos['nombre'], 'id'=>$datos['id'], 'idTipoUsuario'=>$datos['idTipoUsuario'], 'etiquetaTipoUsuario'=>$datos['etiquetaTipoUsuario']  ) );
               }
 
                else {
