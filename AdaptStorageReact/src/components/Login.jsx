@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useRef} from 'react';
 
 export function Login({mostrarRegistro}) {
+
+    const refUsuario = useRef(null);
+
 
   return (
     <div
@@ -52,6 +55,7 @@ export function Login({mostrarRegistro}) {
                       textDecorationColor: "white",
                       //padding: 0,
                     }}
+                    ref={refUsuario}
                   />
                 </div>
               </div>
