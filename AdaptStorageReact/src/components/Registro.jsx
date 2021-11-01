@@ -32,16 +32,16 @@ class Registro extends Component {
   render() {
     const validar = () => {
       if (
-        this.state.usuario == "" ||
-        this.state.clave == "" ||
-        this.state.correo == "" ||
-        this.state.confClave == ""
+        this.state.usuario === "" ||
+        this.state.clave === "" ||
+        this.state.correo === "" ||
+        this.state.confClave === ""
       ) {
         this.setState({
           mensajeError: "Asegurese de llenar todos los campos.",
         });
         return false;
-      } else if (this.state.clave != this.state.confClave) {
+      } else if (this.state.clave !== this.state.confClave) {
         this.setState({
           mensajeError: "Asegurese de que las contraseñas coincidan.",
         });
@@ -63,7 +63,7 @@ class Registro extends Component {
         const respuestaJson = await enviarData(URL_REGISTRO, data);
         console.log(respuestaJson);
 
-        if (respuestaJson.conectado == true) {
+        if (respuestaJson.conectado === true) {
           this.setState({ mensajeLogin: "Registro Exitoso (" + respuestaJson.nombre + ")"});
           this.setState({ mensajeError: "" });
         } else {
@@ -76,17 +76,17 @@ class Registro extends Component {
     };
 
     const handleChangeInput = (event) => {
-      if (event.target.id == "usuario") {
+      if (event.target.id === "usuario") {
         this.setState({ usuario: event.target.value });
-      } else if (event.target.id == "correo") {
+      } else if (event.target.id === "correo") {
         this.setState({ correo: event.target.value });
-      } else if (event.target.id == "password") {
+      } else if (event.target.id === "password") {
         this.setState({ clave: event.target.value });
-      } else if (event.target.id == "confirmar_password") {
+      } else if (event.target.id === "confirmar_password") {
         this.setState({ confClave: event.target.value });
       }
 
-      if (event.target.value != "") {
+      if (event.target.value !== "") {
         event.target.className = "form-control";
       } else {
         event.target.className = "form-control is-invalid";
