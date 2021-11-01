@@ -13,11 +13,11 @@ export default function Navbar() {
             justifyContent: "left",
             marginTop: "auto",
             marginBottom: "auto",
-            marginLeft: "1rem",
+            marginLeft: "2rem",
             width: "auto",
           }}
         >
-          <img src={logo} alt="" style={{ height: "4.5rem" }} />
+          <img src={logo} alt="" style={{ height: "4rem" }} />
         </div>
 
         <div
@@ -25,7 +25,8 @@ export default function Navbar() {
             marginTop: "auto",
             marginBottom: "auto",
             width: "100%",
-            marginLeft: "1rem",
+            marginLeft: "6rem",
+            marginRight: "6rem",
           }}
         >
           <style>
@@ -34,8 +35,8 @@ export default function Navbar() {
                 div.asd{\
                     border-radius: 5px;\
                 }\
-                input.me-sm-2:focus{\
-                  border-bottom: none;\
+                input.buscar:focus{\
+                  text-decoration: none;\
                 }\
                 button.buscar{\
                   border-radius: 5px;\
@@ -56,20 +57,18 @@ export default function Navbar() {
             }
           </style>
 
-          <div className="d-flex">
+          <div className="d-flex" style={{ height: "3rem" }}>
             <div
               className="d-flex asd"
               style={{
                 background: "white",
-                height: "3rem",
                 display: "inline-block",
                 width: "100%",
-                marginLeft: "1.5rem",
               }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                height="66%"
+                height="50%"
                 fill="currentColor"
                 class="bi bi-search"
                 viewBox="0 0 16 16"
@@ -84,12 +83,11 @@ export default function Navbar() {
               </svg>
 
               <input
-                className="form-control me-sm-2"
+                className="form-control me-sm-2 buscar"
                 type="text"
                 placeholder="Search"
                 style={{
-                  verticalAlign: "middle",
-                  fontSize: "1.2rem",
+                  fontSize: "1rem",
                   fontWeight: "300",
                 }}
               />
@@ -99,9 +97,8 @@ export default function Navbar() {
               type="submit"
               style={{
                 textTransform: "capitalize",
-                marginRight: "2rem",
                 marginLeft: "0.5rem",
-                fontSize: "1.2rem",
+                fontSize: "1rem",
                 fontWeight: "300",
               }}
             >
@@ -114,68 +111,98 @@ export default function Navbar() {
           style={{
             borderRight: "4px solid white",
             height: "6rem",
-            marginRight: "0.5rem",
           }}
         ></div>
 
-        <div
+        <style>
+          {
+            "\
+                div.cuenta{\
+                  border-radius: 20px;\
+                  background: #2196f3;\
+                  color: white;\
+                  border: solid #2196f3 0rem;\
+                  transition: 0.3s;\
+                  padding-top:1.5rem;\
+                }\
+                div.cuenta:hover{\
+                  border-radius: 20px;\
+                  background: white;\
+                  color: #2196f3;\
+                  border: solid #2196f3 0.5rem;\
+                  padding-top:1rem;\
+                }\
+                div.cuenta:active{\
+                  color: white;\
+                  background: #2196f3;\
+                }\
+                div h6{\
+                  -webkit-user-select: none;\
+                  -moz-user-select: none;\
+                  -ms-user-select: none;\
+                }\
+                "
+          }
+        </style>
+
+        <div className="cuenta" 
           style={{
-            display: "flex",
-            justifyContent: "right",
-            marginTop: "auto",
-            marginBottom: "auto",
-            marginRight: "1rem",
-            minWidth: "16rem",
-            maxWidth: "100",
+            paddingLeft:"0.5rem",
+            paddingRight:"2rem",
           }}
         >
           <div
             style={{
-              verticalAlign: "middle",
-              display: "table-cell",
-              textAlign: "right",
-              width: "100%",
+              justifyContent: "right",
+              minWidth: "16rem",
+              maxWidth: "100",
             }}
           >
             <div
               style={{
-                width: "70%",
-                verticalAlign: "middle",
-                display: "inline-block",
+                display: "table-cell",
+                textAlign: "right",
+                width: "100%",
               }}
             >
-              <h4
+              <div
                 style={{
-                  color: "white",
-                  marginTop: "0.5rem",
-                  fontWeight: "300",
-                  textTransform: "capitalize",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
+                  width: "70%",
+                  verticalAlign: "middle",
+                  display: "inline-block",
                 }}
               >
-                {SesionUsuario.nombre}
-              </h4>
-            </div>
+                <h6
+                  style={{
+                    marginTop: "0.5rem",
+                    fontWeight: "300",
+                    textTransform: "capitalize",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {SesionUsuario.nombre}
+                </h6>
+              </div>
 
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="3.5rem"
-              fill="currentColor"
-              class="bi bi-person-circle"
-              viewBox="0 0 16 16"
-              style={{
-                color: "white",
-                marginLeft: "1rem",
-              }}
-            >
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-              <path
-                fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="3rem"
+                fill="currentColor"
+                class="bi bi-person-circle"
+                viewBox="0 0 16 16"
+                style={{
+                  marginLeft: "1rem",
+                }}
+              >
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path
+                  fill-rule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </nav>

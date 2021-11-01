@@ -100,7 +100,8 @@ function BibliotecaUsuario() {
               <button
                 className="btn btn-primary subir"
                 style={{
-                  margin: "0.5rem",
+                  marginLeft:"0.5rem",
+                  marginRight:"0.5rem",
                   textTransform: "capitalize",
                   fontWeight: "300",
                 }}
@@ -120,7 +121,7 @@ function BibliotecaUsuario() {
               <button
                 className="btn btn-dark carpeta"
                 style={{
-                  margin: "0.5rem",
+                  marginLeft:"0.5rem",
                   marginRight: "auto",
                   textTransform: "capitalize",
                   fontWeight: "300",
@@ -140,7 +141,8 @@ function BibliotecaUsuario() {
               <button
                 className="btn btn-secondary ordenar"
                 style={{
-                  margin: "0.5rem",
+                  marginLeft:"0.5rem",
+                  marginRight:"0.5rem",
                   textTransform: "capitalize",
                   fontWeight: "300",
                 }}
@@ -166,7 +168,10 @@ function BibliotecaUsuario() {
                 overflow: "auto",
               }}
             >
-              <table className="table" style={{ color: "#666", width:"100%", tableLayout:"fixed"}}>
+              <table
+                className="table"
+                style={{ color: "#666", width: "100%", tableLayout: "fixed" }}
+              >
                 <thead>
                   <tr style={{ fontStyle: "italic" }}>
                     <th
@@ -200,7 +205,7 @@ function BibliotecaUsuario() {
                     <th
                       className="col-1"
                       scope="col"
-                      style={{ fontWeight: 600}}
+                      style={{ fontWeight: 600 }}
                     >
                       Propietario
                     </th>
@@ -312,10 +317,10 @@ function BibliotecaUsuario() {
                         textOverflow: "ellipsis",
                       }}
                     >
-                      Hernesto Arenas Cano
+                      Ernesto Arenas Cano
                     </td>
                   </tr>
-                  <tr style={{borderBottom: "solid 0.05rem #bbb"}}>
+                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
                     <th scope="row" style={{ fontWeight: 600 }}>
                       Estrategia Presupuesto 3er Cuarto
                     </th>
@@ -329,7 +334,7 @@ function BibliotecaUsuario() {
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                       }}
-                    > 
+                    >
                       Carlos Alberto Conchas Montañés
                     </td>
                   </tr>
@@ -425,7 +430,7 @@ function BibliotecaUsuario() {
                   </tr>
                 </tbody>
               </table>
-              <div>
+              <div style={{  display:"flex", justifyContent:"flex-end", }}>
                 <ul className="pagination">
                   <li className="page-item disabled">
                     <a className="page-link" href="#">
@@ -470,7 +475,6 @@ function BibliotecaUsuario() {
       ) : (
         //------------------- VISTA CUENTAS ADMIN --------------------
         <div className="">
-          <h2>Vista Cuentas Administrador</h2>
           <div
             className="container-fluid"
             style={{
@@ -482,18 +486,48 @@ function BibliotecaUsuario() {
               display: "flex",
             }}
           >
-            <button className="btn btn-primary" style={{ margin: "0.5rem" }}>
-              Subir Archivo
-            </button>
-            <button
-              className="btn btn-dark"
-              style={{ margin: "0.5rem", marginRight: "auto" }}
-            >
-              Nueva Carpeta
-            </button>
-            <button className="btn btn-secondary" style={{ margin: "0.5rem" }}>
-              Ordenar
-            </button>
+            <style>
+              {
+                "\
+                button.ordenar{\
+                  border-radius: 5px;\
+                  background: white;\
+                  box-shadow: none;\
+                  color: #444;\
+                  border: solid white 2px;\
+                }\
+                button.ordenar:hover{\
+                  background: white;\
+                  color: #666;\
+                  border: solid #444 2px;\
+                }\
+                button.ordenar:enabled{\
+                  border: solid #444 2px;\
+                }\
+                \
+                "
+              }
+            </style>
+            <div className="container-fluid" style={{  display:"flex", justifyContent:"flex-end" }}>
+              <button
+                className="btn btn-secondary ordenar"
+                style={{
+                  textTransform: "capitalize",
+                  fontWeight: "300",
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1.2rem"
+                  fill="currentColor"
+                  class="bi bi-filter"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+                </svg>
+                {" Ordenar"}
+              </button>
+            </div>
           </div>
           <div
             className="container-fluid"
@@ -504,34 +538,36 @@ function BibliotecaUsuario() {
               overflow: "auto",
             }}
           >
-            <table className="table" style={{ color: "#666" }}>
+            <table
+              className="table"
+              style={{ color: "#666", width: "100%", tableLayout: "fixed" }}
+            >
               <thead>
                 <tr style={{ fontStyle: "italic" }}>
-                  <th className="col-3" scope="col" style={{ fontWeight: 600 }}>
+                  <th className="col-2" scope="col" style={{ fontWeight: 600 }}>
                     Nombre
                   </th>
-                  <th className="col-1" scope="col" style={{ fontWeight: 600 }}>
-                    Tipo
+                  <th className="col-2" scope="col" style={{ fontWeight: 600 }}>
+                    Nivel
                   </th>
-                  <th className="col-1" scope="col" style={{ fontWeight: 600 }}>
-                    Fecha
+                  <th className="col-2" scope="col" style={{ fontWeight: 600 }}>
+                    Correo
                   </th>
-                  <th className="col-1" scope="col" style={{ fontWeight: 600 }}>
-                    Tamaño
-                  </th>
-                  <th className="col-1" scope="col" style={{ fontWeight: 600 }}>
-                    Propietario
+                  <th className="col-2" scope="col" style={{ fontWeight: 600 }}>
+                    Acciones
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Resumen Ventas Agosto
+                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis", }}>
+                    Carlos Alberto Conchas Montañez
                   </th>
-                  <td style={{ fontWeight: 400 }}>PDF</td>
-                  <td style={{ fontWeight: 400 }}>28/09/21</td>
-                  <td style={{ fontWeight: 400 }}>230 KB</td>
+                  <td style={{ fontWeight: 400 }}>
+                     1 - Adminisitrador
+                    </td>
                   <td
                     style={{
                       fontWeight: 400,
@@ -540,16 +576,22 @@ function BibliotecaUsuario() {
                       textOverflow: "ellipsis",
                     }}
                   >
+                    carlos_al@gmail.com
+                  </td>
+                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
+                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
+                  </td>
+                </tr>
+                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
+                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis", }}>
                     José Daniel Vazquez Franco
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Proyecto Desarollo
                   </th>
-                  <td style={{ fontWeight: 400 }}>Carpeta</td>
-                  <td style={{ fontWeight: 400 }}>02/10/21</td>
-                  <td style={{ fontWeight: 400 }}>-</td>
+                  <td style={{ fontWeight: 400 }}>
+                    2 - Desarrollo
+                    </td>
                   <td
                     style={{
                       fontWeight: 400,
@@ -558,16 +600,70 @@ function BibliotecaUsuario() {
                       textOverflow: "ellipsis",
                     }}
                   >
+                    daniel_vazquez@yahoo.com
+                  </td>
+                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
+                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
+                  </td>
+                </tr>
+                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
+                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis", }}>
+                    Juan Guillermo Uribe Parra
+                  </th>
+                  <td style={{ fontWeight: 400 }}>
+                    2 - Desarrollo
+                    </td>
+                  <td
+                    style={{
+                      fontWeight: 400,
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    juang_uribe@hotmail.com.mx
+                  </td>
+                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
+                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
+                  </td>
+                </tr>
+                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
+                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis", }}>
+                    Ernesto Arenas Cano
+                  </th>
+                  <td style={{ fontWeight: 400 }}>
+                    2 - Desarrollo
+                    </td>
+                  <td
+                    style={{
+                      fontWeight: 400,
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    arenas_ernesto@outlool.com
+                  </td>
+                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
+                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
+                  </td>
+                </tr>
+                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
+                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis", }}>
                     Yared del Toro Hernandez
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Cotización Technology
                   </th>
-                  <td style={{ fontWeight: 400 }}>XLSX</td>
-                  <td style={{ fontWeight: 400 }}>12/05/21</td>
-                  <td style={{ fontWeight: 400 }}>32 KB</td>
+                  <td style={{ fontWeight: 400 }}>
+                    3 - Diseño
+                    </td>
                   <td
                     style={{
                       fontWeight: 400,
@@ -576,16 +672,22 @@ function BibliotecaUsuario() {
                       textOverflow: "ellipsis",
                     }}
                   >
-                    Juan Guillermo Uribe Parra
+                    yareddeltoro@mailchimp.com
+                  </td>
+                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
+                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
                   </td>
                 </tr>
                 <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Video Introducción
+                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis", }}>
+                    Priscila Muñoz Lopez
                   </th>
-                  <td style={{ fontWeight: 400 }}>MP4</td>
-                  <td style={{ fontWeight: 400 }}>21/09/21</td>
-                  <td style={{ fontWeight: 400 }}>83 MB</td>
+                  <td style={{ fontWeight: 400 }}>
+                    3 - Diseño
+                    </td>
                   <td
                     style={{
                       fontWeight: 400,
@@ -594,16 +696,22 @@ function BibliotecaUsuario() {
                       textOverflow: "ellipsis",
                     }}
                   >
-                    Juan Guillermo Uribe Parra
+                    pris_muñoz@yahoo.com
+                  </td>
+                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
+                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
                   </td>
                 </tr>
                 <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Reporte Javier Enero
+                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis", }}>
+                    Adrian Cano Jimenez
                   </th>
-                  <td style={{ fontWeight: 400 }}>PDF</td>
-                  <td style={{ fontWeight: 400 }}>15/08/21</td>
-                  <td style={{ fontWeight: 400 }}>168 KB</td>
+                  <td style={{ fontWeight: 400 }}>
+                    3 - Diseño
+                    </td>
                   <td
                     style={{
                       fontWeight: 400,
@@ -612,16 +720,22 @@ function BibliotecaUsuario() {
                       textOverflow: "ellipsis",
                     }}
                   >
-                    Javier Hernandez Palma
+                    cano.adrian@gmail.com
+                  </td>
+                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
+                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
                   </td>
                 </tr>
                 <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Plan de Rodaje Comercial
+                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis", }}>
+                    Alfredo Rosales Gomez
                   </th>
-                  <td style={{ fontWeight: 400 }}>DOCX</td>
-                  <td style={{ fontWeight: 400 }}>04/10/21</td>
-                  <td style={{ fontWeight: 400 }}>2.4 MB</td>
+                  <td style={{ fontWeight: 400 }}>
+                    3 - Diseño
+                    </td>
                   <td
                     style={{
                       fontWeight: 400,
@@ -630,120 +744,16 @@ function BibliotecaUsuario() {
                       textOverflow: "ellipsis",
                     }}
                   >
-                    Hernesto Arenas Cano
+                    fredo_rosales@hotmail.com
                   </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Estrategia Presupuesto 3er Cuarto
-                  </th>
-                  <td style={{ fontWeight: 400 }}>PPTX</td>
-                  <td style={{ fontWeight: 400 }}>28/09/21</td>
-                  <td style={{ fontWeight: 400 }}>6.3 MB</td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    Carlos Alberto Conchas Montañés
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Proyecto Cervantes
-                  </th>
-                  <td style={{ fontWeight: 400 }}>PDF</td>
-                  <td style={{ fontWeight: 400 }}>04/10/21</td>
-                  <td style={{ fontWeight: 400 }}>821 KB</td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    Alejando Vazquez Lara
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Entrevista José Porfirio
-                  </th>
-                  <td style={{ fontWeight: 400 }}>MP3</td>
-                  <td style={{ fontWeight: 400 }}>28/10/21</td>
-                  <td style={{ fontWeight: 400 }}>7.1 MB</td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    Sergio Antonio Uribe Parra
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Resumen Ventas Agosto
-                  </th>
-                  <td style={{ fontWeight: 400 }}>PDF</td>
-                  <td style={{ fontWeight: 400 }}>28/09/21</td>
-                  <td style={{ fontWeight: 400 }}>230 KB</td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    José Daniel Vazquez Franco
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Proyecto Desarollo
-                  </th>
-                  <td style={{ fontWeight: 400 }}>Carpeta</td>
-                  <td style={{ fontWeight: 400 }}>02/10/21</td>
-                  <td style={{ fontWeight: 400 }}>-</td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    Yared del Toro Hernandez
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    Cotización Technology
-                  </th>
-                  <td style={{ fontWeight: 400 }}>XLSX</td>
-                  <td style={{ fontWeight: 400 }}>12/05/21</td>
-                  <td style={{ fontWeight: 400 }}>32 KB</td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    Juan Guillermo Uribe Parra
+                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
+                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <div>
+            <div style={{  display:"flex", justifyContent:"flex-end", }}>
               <ul className="pagination">
                 <li className="page-item disabled">
                   <a className="page-link" href="#">
