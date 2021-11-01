@@ -1,9 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../img/Logo_AdaptStorage_Blanco.png";
 import { sesion_usuario } from "../helper/context";
+import DropdownUsuario from "./DropdownUsuario";
 
-export default function Navbar() {
+export default function Navbar({toggleBiblio}) {
   const { SesionUsuario, setSesionUsuario } = useContext(sesion_usuario);
+  const [ MostrarDropdown, setMostrarDropdown ] = useState(false);
+
+  const toggleMostrarDropdown = () => {
+    setMostrarDropdown((prevMostrarDropdown) => !prevMostrarDropdown);
+  }
 
   return (
     <div>
@@ -145,29 +151,31 @@ export default function Navbar() {
           }
         </style>
 
-        <div className="cuenta" 
+        {MostrarDropdown ? (<DropdownUsuario toggleBiblio = {toggleBiblio}/>) : (<p></p>)}
+
+        <div className="cuenta" onClick={toggleMostrarDropdown}
           style={{
             paddingLeft:"0.5rem",
             paddingRight:"2rem",
+            height:"6rem",
+            zIndex: 2
           }}
         >
           <div
             style={{
-              justifyContent: "right",
-              minWidth: "16rem",
-              maxWidth: "100",
+              minWidth: "10rem",
+              maxWidth: "16rem",
             }}
           >
             <div
               style={{
-                display: "table-cell",
                 textAlign: "right",
                 width: "100%",
               }}
             >
               <div
                 style={{
-                  width: "70%",
+                  width: "60%",
                   verticalAlign: "middle",
                   display: "inline-block",
                 }}
@@ -185,7 +193,6 @@ export default function Navbar() {
                   {SesionUsuario.nombre}
                 </h6>
               </div>
-
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="3rem"

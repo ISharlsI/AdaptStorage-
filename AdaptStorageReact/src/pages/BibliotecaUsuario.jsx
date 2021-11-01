@@ -24,7 +24,7 @@ function BibliotecaUsuario() {
   //Se muestra la biblioteca
   return (
     <div>
-      <Navbar />
+      <Navbar toggleBiblio = {toggleBiblio}/>
 
       {VistaBiblio ? (
         //------------------- VISTA BIBLIOTECA --------------------
@@ -795,8 +795,6 @@ function BibliotecaUsuario() {
           </div>
         </div>
       )}
-
-      <button onClick={toggleBiblio}>Cambiar Vista</button>
     </div>
   );
 }
