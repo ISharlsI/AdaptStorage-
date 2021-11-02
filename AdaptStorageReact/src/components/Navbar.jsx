@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import logo from "../img/Logo_AdaptStorage_Blanco.png";
-import { sesion_usuario } from "../helper/context";
 import DropdownUsuario from "./DropdownUsuario";
 
 export default function Navbar({toggleBiblio}) {
-  const { SesionUsuario, setSesionUsuario } = useContext(sesion_usuario);
+  const [ SesionUsuario, setSesionUsuario ] = useState(JSON.parse(localStorage.getItem('sesion_usuario')));
   const [ MostrarDropdown, setMostrarDropdown ] = useState(false);
 
   const toggleMostrarDropdown = () => {

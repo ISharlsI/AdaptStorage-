@@ -6,25 +6,15 @@ import Registro from "./components/Registro";
 import BibliotecaUsuario from "./pages/BibliotecaUsuario";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { sesion_usuario } from "./helper/context";
-
 function App() {
   const [visible, setVisible] = useState(true);
-  const [SesionUsuario, setSesionUsuario] = useState({
-    conectado: false,
-  });
 
   function toggleLogin() {
     setVisible((prevVisible) => !prevVisible);
   }
 
-  function fetchUsuario(refJson) {
-    setSesionUsuario((SesionUsuario) => refJson);
-    //console.log(SesionUsuario);
-  }
-
   return (
-    <sesion_usuario.Provider value={{ SesionUsuario, setSesionUsuario }}>
+    <div>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -45,24 +35,18 @@ function App() {
             {visible ? (
               <Login
                 mostrarRegistro={toggleLogin}
-                logearUsuario={fetchUsuario}
               />
             ) : (
               <Registro mostrarLogin={toggleLogin} />
             )}
           </Route>
-
           <Route exact path="/biblioteca">
             {/* -----------------------BIBLIOTECA USUARIO--------------------- */}
             <BibliotecaUsuario />
           </Route>
-
-          <Route exact path="/bibliotecaAdmin">
-            {/* -----------------------BIBLIOTECA ADMON--------------------- */}
-          </Route>
         </Switch>
       </Router>
-    </sesion_usuario.Provider>
+    </div>
   );
 }
 

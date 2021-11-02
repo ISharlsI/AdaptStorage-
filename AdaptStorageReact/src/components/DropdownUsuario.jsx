@@ -1,16 +1,25 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
-export default function DropdownUsuario({toggleBiblio}) {
+function DropdownUsuario({toggleBiblio}) {
+  let history = useHistory();
+
+  const cerrarSesion = () => {
+    localStorage.clear();
+    history.push("/");
+  }
+
   return (
     <div
-      className="container-fluid"
+      className="fixed"
       style={{
         position: "absolute",
         right:"0px",
         zIndex: 1,
         width: "auto",
-        maxWidth: "16rem",
+        maxWidth: "12rem",
         float: "right",
+        background:"pink"
       }}
     >
       <div
@@ -19,7 +28,7 @@ export default function DropdownUsuario({toggleBiblio}) {
           display: "grid",
           borderRadius: "5px",
           float: "right",
-          width:"10rem",
+          width:"12rem",
           height:"14rem",
           boxShadow: "2px 2px 4px #666",
           justifyContent: "center",
@@ -45,7 +54,7 @@ export default function DropdownUsuario({toggleBiblio}) {
                 "
           }
         </style>
-        <button
+        <button onClick={cerrarSesion}
           className="btn btn-secondary drop"
           style={{
             textTransform: "capitalize",
@@ -79,3 +88,5 @@ export default function DropdownUsuario({toggleBiblio}) {
     </div>
   );
 }
+
+export default DropdownUsuario;

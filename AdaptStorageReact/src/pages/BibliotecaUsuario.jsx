@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
-import { sesion_usuario } from "../helper/context";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 function BibliotecaUsuario() {
-  //Se importa variable de Contexto (Global)
-  const { SesionUsuario, setSesionUsuario } = useContext(sesion_usuario);
+  //Se declara variable de sesión
+  const [ SesionUsuario, setSesionUsuario ] = useState(JSON.parse(localStorage.getItem('sesion_usuario')) || '');
 
   //Toggle Mostrar Biblioteca/Lista de Cuentas (admin)
   const [VistaBiblio, setVistaBiblio] = useState(true);
@@ -15,17 +14,16 @@ function BibliotecaUsuario() {
   }
 
   //Se valida la sesión iniciada
-  if (!SesionUsuario.conectado) {
+  if (SesionUsuario === '') {
     //De no estar iniciada sesión,
     //Se redirecciona al index
-    return <Redirect to="/" />;
+    return <Redirect to="/"/>;
   }
 
   //Se muestra la biblioteca
   return (
     <div>
       <Navbar toggleBiblio = {toggleBiblio}/>
-
       {VistaBiblio ? (
         //------------------- VISTA BIBLIOTECA --------------------
         <div>

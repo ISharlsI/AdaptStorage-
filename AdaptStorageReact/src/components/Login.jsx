@@ -14,13 +14,18 @@ const enviarData = async (url, data) => {
 
   //console.log(resp);
   const json = await resp.json();
-  //console.log(json);
+  console.log(json);
 
   return json;
 };
 
 function Login({mostrarRegistro, logearUsuario}) {
   let history = useHistory();
+
+  //SE REVISA SI HAY SESIÓN INICIADA
+  if (localStorage.getItem('sesion_usuario') !== null) {
+    history.push("/biblioteca");
+  }
 
   const [Usuario, setUsuario] = useState("");
   const [Clave, setClave] = useState("");
@@ -65,7 +70,7 @@ function Login({mostrarRegistro, logearUsuario}) {
         setMensajeLogin((MensajeLogin) => "Bienvenido " + respuestaJson.nombre);
         setMensajeError((MensajeError) => "");
 
-        logearUsuario(respuestaJson);
+        localStorage.setItem('sesion_usuario', JSON.stringify(respuestaJson));
         history.push("/biblioteca");
       } else {
         setMensajeLogin((MensajeLogin) => "");
