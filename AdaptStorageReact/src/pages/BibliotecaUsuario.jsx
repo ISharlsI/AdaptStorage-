@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { useHistory } from "react-router-dom";
 
 function BibliotecaUsuario() {
+  let history = useHistory();
+ 
   //Se declara variable de sesión
   const [ SesionUsuario, setSesionUsuario ] = useState(JSON.parse(localStorage.getItem('sesion_usuario')) || '');
 
@@ -11,6 +14,10 @@ function BibliotecaUsuario() {
 
   function toggleBiblio() {
     setVistaBiblio((prevVistaBiblio) => !prevVistaBiblio);
+  }
+
+  function navegarSubirArchivo() {
+    history.push("/subir");
   }
 
   //Se valida la sesión iniciada
@@ -95,7 +102,7 @@ function BibliotecaUsuario() {
                 "
                 }
               </style>
-              <button
+              <button onClick={navegarSubirArchivo}
                 className="btn btn-primary subir"
                 style={{
                   marginLeft:"0.5rem",

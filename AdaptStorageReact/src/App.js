@@ -3,6 +3,7 @@ import "./App.css";
 import React, { useState } from "react";
 import Login from "./components/Login";
 import Registro from "./components/Registro";
+import SubirArchivo from "./pages/SubirArchivo";
 import BibliotecaUsuario from "./pages/BibliotecaUsuario";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -43,6 +44,14 @@ function App() {
           <Route exact path="/biblioteca">
             {/* -----------------------BIBLIOTECA USUARIO--------------------- */}
             <BibliotecaUsuario />
+          </Route>
+
+          <Route exact path="/bibliotecaAdmin">
+            {/* -----------------------BIBLIOTECA ADMON--------------------- */}
+          </Route>
+          <Route exact path="/subir">
+            {/* -----------------------Subir archivo--------------------- */}
+            <SubirArchivo />
           </Route>
         </Switch>
       </Router>
