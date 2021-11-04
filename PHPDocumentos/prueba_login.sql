@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 03-11-2021 a las 01:56:31
+-- Tiempo de generación: 04-11-2021 a las 22:16:42
 -- Versión del servidor: 5.7.31
 -- Versión de PHP: 7.3.21
 
@@ -34,18 +34,18 @@ CREATE TABLE IF NOT EXISTS `archivos` (
   `tipo` varchar(100) NOT NULL,
   `tamanio` decimal(65,0) NOT NULL,
   `ruta` varchar(100) NOT NULL,
+  `fecha` date DEFAULT NULL,
+  `contenido` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `archivos`
 --
 
-INSERT INTO `archivos` (`id`, `titulo`, `tipo`, `tamanio`, `ruta`) VALUES
-(8, 'asda.docx', 'docx', '0', 'uploads/653042-asda.docx'),
-(9, 'asda.docx', 'docx', '0', 'uploads/asda.docx'),
-(10, 'asda.docx', 'docx', '0', 'uploads/asda.docx'),
-(11, 'asda.docx', 'docx', '0', 'uploads/asda.docx');
+INSERT INTO `archivos` (`id`, `titulo`, `tipo`, `tamanio`, `ruta`, `fecha`, `contenido`) VALUES
+(16, 'a', 'txt', '4', 'uploads/a.txt', '2021-11-04', 'Prueba'),
+(15, 'a.txt', 'txt', '4', 'uploads/a.txt', '2021-11-04', 'Prueba');
 
 -- --------------------------------------------------------
 

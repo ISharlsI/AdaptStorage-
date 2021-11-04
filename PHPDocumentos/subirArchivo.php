@@ -30,6 +30,7 @@ if($_FILES['documento'])
         $upload_name = preg_replace('/\s+/', '-', $upload_name);
         $path = $server_url."/".$upload_name;
         $extension = pathinfo($path, PATHINFO_EXTENSION);
+        $nombreArchivo = pathinfo($path, PATHINFO_FILENAME);
      
         if(move_uploaded_file($archivo_tmp_name , $upload_name)) {
             $response = array(
@@ -39,12 +40,14 @@ if($_FILES['documento'])
                 "url" => $server_url."/".$upload_name
               );
                
- 
-            $sql = "INSERT INTO archivos (titulo, tipo, tamanio, ruta) values ('$archivo_name', '$extension', '$size', '$upload_name' )";
+            date_default_timezone_set('America/Mexico_City');
+            setlocale(LC_TIME, 'es_MX.UTF-8');
+            $fecha_actual = date("Y-m-d"); 
+            $sql = "INSERT INTO archivos (titulo, tipo, tamanio, ruta, fecha, contenido) values ('$nombreArchivo', '$extension', '$size', '$upload_name', '$fecha_actual', 'Prueba' )";
             if ($conn->query($sql) === TRUE) {
                 echo json_encode(array('conectado'=>"Registrado en la base de datos"));
               } else {
-                echo json_encode(array('conectado'=>"Hubo un error al registrar en la base de datos"));
+                echo json_encode(array('conectado'=>"Hubo un error al registrar en la base de datos", 'fecha'=>$hoy));
               }
         }else
         {
