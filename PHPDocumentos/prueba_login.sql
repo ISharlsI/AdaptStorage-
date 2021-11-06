@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 04-11-2021 a las 22:16:42
+-- Tiempo de generación: 06-11-2021 a las 02:02:16
 -- Versión del servidor: 5.7.31
 -- Versión de PHP: 7.3.21
 
@@ -37,15 +37,19 @@ CREATE TABLE IF NOT EXISTS `archivos` (
   `fecha` date DEFAULT NULL,
   `contenido` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `archivos`
 --
 
 INSERT INTO `archivos` (`id`, `titulo`, `tipo`, `tamanio`, `ruta`, `fecha`, `contenido`) VALUES
-(16, 'a', 'txt', '4', 'uploads/a.txt', '2021-11-04', 'Prueba'),
-(15, 'a.txt', 'txt', '4', 'uploads/a.txt', '2021-11-04', 'Prueba');
+(20, 'respuestaensayo', 'txt', '0', 'uploads/respuestaensayo.txt', '2021-11-05', 'Prueba'),
+(4, 'EnsayoVolumenes', 'docx', '2000', 'uploads/EnsayoVolumenes.docx', '2021-11-30', ''),
+(3, 'Factura', 'pdf', '20', 'uploads/Factura.pdf', '2021-11-26', ''),
+(2, 'ReporteDeMuestras', 'pdf', '62', 'uploads/ReporteDeMuestras.pdf', '2021-11-12', ''),
+(1, 'Recetas', 'txt', '2', 'uploads/Recetas.txt', '2021-11-02', ''),
+(21, 'respuestaensayo', 'txt', '0', 'uploads/respuestaensayo.txt', '2021-11-05', 'Prueba');
 
 -- --------------------------------------------------------
 
@@ -84,19 +88,14 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `nombre` varchar(100) NOT NULL,
   `idTipoUsuario` int(128) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `usuario`, `clave`, `nombre`, `idTipoUsuario`) VALUES
-(2, 'correo1@hotmail.com', '$2y$10$8gNyRNWhiZisIajKckP8a.su2NmjRG1oA1gFjRly3VuaUk.wWrIJm', 'Carlos Alberto Conchas Montañez', 2),
-(3, '', '$2y$10$TQv.xqZYsBI.Q8/0AKIEeeqxvAp9s6/8IkcIuY/Uv5UQ9zX60Ko5W', '', 2),
-(4, 'asdasd', '$2y$10$2ynT38Vimp4BGYPgjtsCTeGhuEew6osP3HtCLjGgf/ueo3YjdB2Eu', 'Carlos', 2),
-(5, '', '$2y$10$Qau79o75dREB8ywcj/xtuuSCYbfxWvZcBTzeXJEHpOeK.mISjGigK', '', 2),
-(6, '', '$2y$10$pxDKTguo34NlNA9VFc.dlOoc.HAGH3OUcm1W5PrOHPlayvHkKiKEW', '', 2),
-(7, '', '$2y$10$hW9GlnmiggU2FbCds.aK9upRrMOMhsJidi.S9eLM/a7jp5fwNubNC', '', 2);
+(4, 'a', '$2y$10$2ynT38Vimp4BGYPgjtsCTeGhuEew6osP3HtCLjGgf/ueo3YjdB2Eu', 'Carlos', 2);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

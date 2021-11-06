@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useHistory } from "react-router-dom";
+import axios from 'axios';
+
+
+
 
 function BibliotecaUsuario() {
   let history = useHistory();
+  const [extra, setExtra] = useState([]);
  
+  useEffect(() => {
+    obtenerArchivos()
+  },[])
+
+  async function obtenerArchivos(){
+  
+    const res = await axios.get('http://localhost/AdaptStorage/mostrarDatos.php');
+    console.log(res.data);
+    setExtra(res.data);
+   
+  }
+  
+
   //Se declara variable de sesión
   const [ SesionUsuario, setSesionUsuario ] = useState(JSON.parse(localStorage.getItem('sesion_usuario')) || '');
 
@@ -26,7 +44,9 @@ function BibliotecaUsuario() {
     //Se redirecciona al index
     return <Redirect to="/"/>;
   }
-
+  
+  
+  
   //Se muestra la biblioteca
   return (
     <div>
@@ -172,7 +192,7 @@ function BibliotecaUsuario() {
                 paddingLeft: "3rem",
                 overflow: "auto",
               }}
-            >
+            >      
               <table
                 className="table"
                 style={{ color: "#666", width: "100%", tableLayout: "fixed" }}
@@ -217,13 +237,16 @@ function BibliotecaUsuario() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
+                { 
+                extra.map(e => (
+                    
+                    <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
                     <th scope="row" style={{ fontWeight: 600 }}>
-                      Resumen Ventas Agosto
+                    {e.titulo}
                     </th>
-                    <td style={{ fontWeight: 400 }}>PDF</td>
-                    <td style={{ fontWeight: 400 }}>28/09/21</td>
-                    <td style={{ fontWeight: 400 }}>230 KB</td>
+                    <td style={{ fontWeight: 400 }}>{e.tipo}</td>
+                    <td style={{ fontWeight: 400 }}>{e.fecha}</td>
+                    <td style={{ fontWeight: 400 }}>{e.tamanio}</td>
                     <td
                       style={{
                         fontWeight: 400,
@@ -235,204 +258,8 @@ function BibliotecaUsuario() {
                       José Daniel Vazquez Franco
                     </td>
                   </tr>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      Proyecto Desarollo
-                    </th>
-                    <td style={{ fontWeight: 400 }}>Carpeta</td>
-                    <td style={{ fontWeight: 400 }}>02/10/21</td>
-                    <td style={{ fontWeight: 400 }}>-</td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      Yared del Toro Hernandez
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      Cotización Technology
-                    </th>
-                    <td style={{ fontWeight: 400 }}>XLSX</td>
-                    <td style={{ fontWeight: 400 }}>12/05/21</td>
-                    <td style={{ fontWeight: 400 }}>32 KB</td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      Juan Guillermo Uribe Parra
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      Video Introducción
-                    </th>
-                    <td style={{ fontWeight: 400 }}>MP4</td>
-                    <td style={{ fontWeight: 400 }}>21/09/21</td>
-                    <td style={{ fontWeight: 400 }}>83 MB</td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      Juan Guillermo Uribe Parra
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      Reporte Javier Enero
-                    </th>
-                    <td style={{ fontWeight: 400 }}>PDF</td>
-                    <td style={{ fontWeight: 400 }}>15/08/21</td>
-                    <td style={{ fontWeight: 400 }}>168 KB</td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      Javier Hernandez Palma
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      Plan de Rodaje Comercial
-                    </th>
-                    <td style={{ fontWeight: 400 }}>DOCX</td>
-                    <td style={{ fontWeight: 400 }}>04/10/21</td>
-                    <td style={{ fontWeight: 400 }}>2.4 MB</td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      Ernesto Arenas Cano
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      Estrategia Presupuesto 3er Cuarto
-                    </th>
-                    <td style={{ fontWeight: 400 }}>PPTX</td>
-                    <td style={{ fontWeight: 400 }}>28/09/21</td>
-                    <td style={{ fontWeight: 400 }}>6.3 MB</td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      Carlos Alberto Conchas Montañés
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      Proyecto Cervantes
-                    </th>
-                    <td style={{ fontWeight: 400 }}>PDF</td>
-                    <td style={{ fontWeight: 400 }}>04/10/21</td>
-                    <td style={{ fontWeight: 400 }}>821 KB</td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      Alejando Vazquez Lara
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      Entrevista José Porfirio
-                    </th>
-                    <td style={{ fontWeight: 400 }}>MP3</td>
-                    <td style={{ fontWeight: 400 }}>28/10/21</td>
-                    <td style={{ fontWeight: 400 }}>7.1 MB</td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      Sergio Antonio Uribe Parra
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      Resumen Ventas Agosto
-                    </th>
-                    <td style={{ fontWeight: 400 }}>PDF</td>
-                    <td style={{ fontWeight: 400 }}>28/09/21</td>
-                    <td style={{ fontWeight: 400 }}>230 KB</td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      José Daniel Vazquez Franco
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      Proyecto Desarollo
-                    </th>
-                    <td style={{ fontWeight: 400 }}>Carpeta</td>
-                    <td style={{ fontWeight: 400 }}>02/10/21</td>
-                    <td style={{ fontWeight: 400 }}>-</td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      Yared del Toro Hernandez
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      Cotización Technology
-                    </th>
-                    <td style={{ fontWeight: 400 }}>XLSX</td>
-                    <td style={{ fontWeight: 400 }}>12/05/21</td>
-                    <td style={{ fontWeight: 400 }}>32 KB</td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      Juan Guillermo Uribe Parra
-                    </td>
-                  </tr>
+                    
+                  ))} 
                 </tbody>
               </table>
               <div style={{  display:"flex", justifyContent:"flex-end", }}>
@@ -756,7 +583,8 @@ function BibliotecaUsuario() {
                     <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
                   </td>
                 </tr>
-              </tbody>
+                
+              </tbody>  
             </table>
             <div style={{  display:"flex", justifyContent:"flex-end", }}>
               <ul className="pagination">
@@ -796,11 +624,13 @@ function BibliotecaUsuario() {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div>     
           </div>
         </div>
       )}
     </div>
+
+    
   );
 }
 
