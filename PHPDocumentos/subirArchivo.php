@@ -47,7 +47,7 @@ if($_FILES['documento'])
             if ($conn->query($sql) === TRUE) {
                 echo json_encode(array('conectado'=>"Registrado en la base de datos"));
               } else {
-                echo json_encode(array('conectado'=>"Hubo un error al registrar en la base de datos", 'fecha'=>$hoy));
+                echo json_encode(array('conectado'=>"Hubo un error al registrar en la base de datos"));
               }
         }else
         {

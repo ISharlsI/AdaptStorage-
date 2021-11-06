@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 06-11-2021 a las 02:02:16
+-- Tiempo de generación: 06-11-2021 a las 06:39:44
 -- Versión del servidor: 5.7.31
 -- Versión de PHP: 7.3.21
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `archivos` (
   `fecha` date DEFAULT NULL,
   `contenido` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `archivos`
@@ -49,7 +49,8 @@ INSERT INTO `archivos` (`id`, `titulo`, `tipo`, `tamanio`, `ruta`, `fecha`, `con
 (3, 'Factura', 'pdf', '20', 'uploads/Factura.pdf', '2021-11-26', ''),
 (2, 'ReporteDeMuestras', 'pdf', '62', 'uploads/ReporteDeMuestras.pdf', '2021-11-12', ''),
 (1, 'Recetas', 'txt', '2', 'uploads/Recetas.txt', '2021-11-02', ''),
-(21, 'respuestaensayo', 'txt', '0', 'uploads/respuestaensayo.txt', '2021-11-05', 'Prueba');
+(21, 'respuestaensayo', 'txt', '0', 'uploads/respuestaensayo.txt', '2021-11-05', 'Prueba'),
+(22, 'estadisticas', 'pdf', '368196', 'uploads/estadisticas.pdf', '2021-11-06', 'Prueba');
 
 -- --------------------------------------------------------
 

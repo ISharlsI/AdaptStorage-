@@ -1,14 +1,14 @@
 <?php
 	include "conectar.php";
-    $conn = conectarDB();
+  $conn = conectarDB();
 	
 
-    $JSONData = file_get_contents("php://input");
+  $JSONData = file_get_contents("php://input");
 	$dataObject = json_decode($JSONData);       
     
-    $conn->set_charset('utf8');
+  $conn->set_charset('utf8');
     
-    $nombre = $dataObject-> usuario;
+  $nombre = $dataObject-> usuario;
 	$usuario = $dataObject-> correo;
 	$password =	$dataObject-> password;
 
