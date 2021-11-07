@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-function DropdownUsuario({toggleBiblio}) {
+function DropdownUsuario() {
   let history = useHistory();
 
   const cerrarSesion = () => {
@@ -29,7 +29,7 @@ function DropdownUsuario({toggleBiblio}) {
           borderRadius: "5px",
           float: "right",
           width:"12rem",
-          height:"14rem",
+          height:"10rem",
           boxShadow: "2px 2px 4px #666",
           justifyContent: "center",
         }}
@@ -68,21 +68,6 @@ function DropdownUsuario({toggleBiblio}) {
           }}
         >
           {" Cerrar Sesión"}
-        </button>
-        <button
-          className="btn btn-secondary drop"
-          onClick={toggleBiblio}
-          style={{
-            textTransform: "capitalize",
-            fontWeight: "400",
-            width:"8rem",
-            marginBottom:"0.5rem",
-            paddingTop:"0.6rem",
-            paddingBottom:"0.6rem",
-            fontSize:"0.8rem"
-          }}
-        >
-          {"Cuentas de Usuario"}
         </button>
       </div>
     </div>

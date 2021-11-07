@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../img/Logo_AdaptStorage_Blanco.png";
 import DropdownUsuario from "./DropdownUsuario";
 
-export default function Navbar({toggleBiblio}) {
+export default function Navbar() {
   const [ SesionUsuario, setSesionUsuario ] = useState(JSON.parse(localStorage.getItem('sesion_usuario')));
   const [ MostrarDropdown, setMostrarDropdown ] = useState(false);
 
@@ -150,7 +150,7 @@ export default function Navbar({toggleBiblio}) {
           }
         </style>
 
-        {MostrarDropdown ? (<DropdownUsuario toggleBiblio = {toggleBiblio}/>) : (<p></p>)}
+        {MostrarDropdown ? (<DropdownUsuario/>) : (<p></p>)}
 
         <div className="cuenta" onClick={toggleMostrarDropdown}
           style={{
