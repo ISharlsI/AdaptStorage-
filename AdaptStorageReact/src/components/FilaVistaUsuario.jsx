@@ -8,6 +8,8 @@ function FilaVistaUsuario({ usuario }) {
   const [Nivel, setNivel] = useState(usuario.idTipoUsuario);
   const [IdUsuario, setIdUsuario] = useState(usuario.id);
 
+  const [MensajeGuardar, setMensajeGuardar] = useState('');
+
   const handleChangeNivel = (event) => {
       setNivel((Nivel) => event.target.value);
       event.target.className = "form-control cambiado";
@@ -42,6 +44,7 @@ function FilaVistaUsuario({ usuario }) {
     const respuestaJson = await enviarData(URL_REGISTRO, data);
     console.log(respuestaJson);
     
+    setMensajeGuardar('Guardado Correctamente');
   }
 
   const eliminarUsuario = () =>{
@@ -63,23 +66,14 @@ function FilaVistaUsuario({ usuario }) {
         {Nombre}
       </th>
       <td style={{ fontWeight: 400 }}>
-      <style>
-          {
-            "\
-                select.cambiado{\
-                    border-bottom: solid orange;\
-                }\
-                \
-                "
-          }
-        </style>
-        <select id="nivel" onChange={handleChangeNivel} class="form-control" style={{ width: "2rem" }}>
+        <select id="nivel" onChange={handleChangeNivel} class="form-control" style={{ width: "2rem", display:'inline' }}>
           {Nivel == 1 ? <option value='1' selected>1</option> : <option value='1'>1</option>}
           {Nivel == 2 ? <option value='2' selected>2</option> : <option value='2'>2</option>}
           {Nivel == 3 ? <option value='3' selected>3</option> : <option value='3'>3</option>}
           {Nivel == 4 ? <option value='4' selected>4</option> : <option value='4'>4</option>}
           {Nivel == 5 ? <option value='5' selected>5</option> : <option value='5'>5</option>}
         </select>
+        <span style={{marginLeft:'1rem', color:'green', textDecoration:'underline solid', fontSize:'0.8rem'}}>{MensajeGuardar}</span>
       </td>
       <td
         style={{
