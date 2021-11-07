@@ -13,11 +13,11 @@
 	$password =	$dataObject-> password;
 
 
-	$idTipoUsuario= "2";	
+	$idTipoUsuario= "1";	
 	$clave = password_hash($password, PASSWORD_DEFAULT);
 	
 	
-
+if($nombre!=''){
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
@@ -33,8 +33,8 @@ if ($conn->query($sql) === TRUE) {
 }
 
 //query($borrador);
-
+}
 $conn->close();
 	
-//fuente https://www.w3schools.com/php/php_mysql_insert.asp
+
 ?>

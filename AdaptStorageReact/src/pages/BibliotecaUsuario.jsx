@@ -10,10 +10,16 @@ import axios from 'axios';
 function BibliotecaUsuario() {
   let history = useHistory();
   const [extra, setExtra] = useState([]);
+  const [extra2, setExtra2] = useState([]);
  
   useEffect(() => {
     obtenerArchivos()
   },[])
+
+  useEffect(() => {
+    obtenerArchivos2()
+  },[])
+
 
   async function obtenerArchivos(){
   
@@ -22,6 +28,15 @@ function BibliotecaUsuario() {
     setExtra(res.data);
    
   }
+
+  async function obtenerArchivos2(){
+  
+    const res2 = await axios.get('http://localhost/AdaptStorage/mostrarDatos2.php');
+    console.log(res2.data);
+    setExtra2(res2.data);
+   
+  }
+  
   
 
   //Se declara variable de sesión
@@ -135,7 +150,7 @@ function BibliotecaUsuario() {
                   xmlns="http://www.w3.org/2000/svg"
                   height="1.2rem"
                   fill="currentColor"
-                  class="bi bi-upload"
+                  className="bi bi-upload"
                   viewBox="0 0 16 16"
                 >
                   <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
@@ -156,7 +171,7 @@ function BibliotecaUsuario() {
                   xmlns="http://www.w3.org/2000/svg"
                   height="1.2rem"
                   fill="currentColor"
-                  class="bi bi-folder2"
+                  className="bi bi-folder2"
                   viewBox="0 0 16 16"
                 >
                   <path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z" />
@@ -176,7 +191,7 @@ function BibliotecaUsuario() {
                   xmlns="http://www.w3.org/2000/svg"
                   height="1.2rem"
                   fill="currentColor"
-                  class="bi bi-filter"
+                  className="bi bi-filter"
                   viewBox="0 0 16 16"
                 >
                   <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
@@ -352,7 +367,7 @@ function BibliotecaUsuario() {
                   xmlns="http://www.w3.org/2000/svg"
                   height="1.2rem"
                   fill="currentColor"
-                  class="bi bi-filter"
+                  className="bi bi-filter"
                   viewBox="0 0 16 16"
                 >
                   <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
@@ -380,7 +395,7 @@ function BibliotecaUsuario() {
                     Nombre
                   </th>
                   <th className="col-2" scope="col" style={{ fontWeight: 600 }}>
-                    Nivel
+                    Nivel de Seguridad
                   </th>
                   <th className="col-2" scope="col" style={{ fontWeight: 600 }}>
                     Correo
@@ -391,14 +406,17 @@ function BibliotecaUsuario() {
                 </tr>
               </thead>
               <tbody>
+                {/* Mostrar Usuarios */}
+                { 
+                extra2.map(r => (
                 <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
                   <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis", }}>
-                    Carlos Alberto Conchas Montañez
+                    {r.nombre}
                   </th>
                   <td style={{ fontWeight: 400 }}>
-                     1 - Adminisitrador
+                    {r.idTipoUsuario}
                     </td>
                   <td
                     style={{
@@ -408,182 +426,15 @@ function BibliotecaUsuario() {
                       textOverflow: "ellipsis",
                     }}
                   >
-                    carlos_al@gmail.com
+                    {r.usuario}
                   </td>
                   <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
-                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
-                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
+                    <button type="button" className="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
+                    <button type="button" className="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
                   </td>
                 </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis", }}>
-                    José Daniel Vazquez Franco
-                  </th>
-                  <td style={{ fontWeight: 400 }}>
-                    2 - Desarrollo
-                    </td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    daniel_vazquez@yahoo.com
-                  </td>
-                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
-                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
-                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis", }}>
-                    Juan Guillermo Uribe Parra
-                  </th>
-                  <td style={{ fontWeight: 400 }}>
-                    2 - Desarrollo
-                    </td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    juang_uribe@hotmail.com.mx
-                  </td>
-                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
-                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
-                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis", }}>
-                    Ernesto Arenas Cano
-                  </th>
-                  <td style={{ fontWeight: 400 }}>
-                    2 - Desarrollo
-                    </td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    arenas_ernesto@outlool.com
-                  </td>
-                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
-                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
-                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis", }}>
-                    Yared del Toro Hernandez
-                  </th>
-                  <td style={{ fontWeight: 400 }}>
-                    3 - Diseño
-                    </td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    yareddeltoro@mailchimp.com
-                  </td>
-                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
-                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
-                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis", }}>
-                    Priscila Muñoz Lopez
-                  </th>
-                  <td style={{ fontWeight: 400 }}>
-                    3 - Diseño
-                    </td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    pris_muñoz@yahoo.com
-                  </td>
-                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
-                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
-                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis", }}>
-                    Adrian Cano Jimenez
-                  </th>
-                  <td style={{ fontWeight: 400 }}>
-                    3 - Diseño
-                    </td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    cano.adrian@gmail.com
-                  </td>
-                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
-                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
-                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600, whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis", }}>
-                    Alfredo Rosales Gomez
-                  </th>
-                  <td style={{ fontWeight: 400 }}>
-                    3 - Diseño
-                    </td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    fredo_rosales@hotmail.com
-                  </td>
-                  <td style={{ display:"flex", fontWeight: 400, justifyContent:"center", borderBottom:"none"}}>
-                    <button type="button" class="btn btn-warning btn-sm" style={{textTransform:"capitalize"}}>Editar</button>
-                    <button type="button" class="btn btn-danger btn-sm" style={{textTransform:"capitalize", marginLeft:"0.5rem"}}>Eliminar</button>
-                  </td>
-                </tr>
-                
+
+))} 
               </tbody>  
             </table>
             <div style={{  display:"flex", justifyContent:"flex-end", }}>
