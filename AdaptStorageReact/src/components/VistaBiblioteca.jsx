@@ -120,7 +120,7 @@ function VistaBiblioteca({toggleBiblio}) {
             </svg>
             {" Subir Archivo"}
           </button>
-          <button
+         {/* <button
             className="btn btn-dark carpeta"
             style={{
               marginLeft: "0.5rem",
@@ -140,6 +140,7 @@ function VistaBiblioteca({toggleBiblio}) {
             </svg>
             {" Nueva Carpeta"}
           </button>
+          */}
           <button
             onClick={toggleBiblio}
             className="btn btn-secondary ordenar"
