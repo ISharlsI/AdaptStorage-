@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const URL_REGISTRO = "http://localhost/AdaptStorage/modificar.php";
+
 function FilaVistaUsuario({ usuario }) {
   const [Nombre, setNombre] = useState(usuario.nombre);
   const [Correo, setCorreo] = useState(usuario.usuario);
@@ -11,8 +13,35 @@ function FilaVistaUsuario({ usuario }) {
       event.target.className = "form-control cambiado";
   };
 
-  const actualizarUsuario = () =>{
-    console.log(Nombre + ", id:" + IdUsuario);
+  //Función Mandar datos a PHP
+  const enviarData = async (url, data) => {
+  const resp = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  console.log(resp);
+  const json = await resp.json();
+  console.log(json);
+
+  return json;
+
+};
+  const actualizarUsuario = async () =>{
+    const data = {
+      IdUsuario,
+      Nombre,
+      Correo,
+      Nivel,
+    };
+
+    console.log("ID: " + IdUsuario + "Nombre: " + Nombre + "Correo: "+ Correo + "Nivel: "  + Nivel);
+    const respuestaJson = await enviarData(URL_REGISTRO, data);
+    console.log(respuestaJson);
+    
   }
 
   const eliminarUsuario = () =>{
