@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import FilaVistaBiblioteca from "./FilaVistaBiblioteca";
 
 function VistaBiblioteca({ toggleBiblio }) {
   let history = useHistory();
@@ -228,62 +229,12 @@ function VistaBiblioteca({ toggleBiblio }) {
               </tr>
             </thead>
             <tbody style={{ borderTop: "solid 0.1rem #666"}}>
+              
+            {/*RENDERIZAR FILAS DE TABLA ARCHIVO*/}
               {extra.map((e) => (
-                <Fragment>
-                  <style>
-                    {
-                      "\
-                      tr.archivo{\
-                        background: white;\
-                        color: #666;\
-                        border-right: solid white 0rem;\
-                        border-left: solid white 0rem;\
-                        transition: 0.3s;\
-                        border-bottom: solid 0.05rem #bbb;\
-                      }\
-                      tr.archivo:hover{\
-                        background: #2196f3;\
-                        color: white;\
-                        border-right: solid white 0.5rem;\
-                        border-left: solid white 0.5rem;\
-                        border-bottom: solid 0.05rem #bbb;\
-                      }\
-                      tr.archivo:active{\
-                        color: #2196f3;\
-                        background: white;\
-                        transition: 0.1s;\
-                      }\
-                      "
-                    }
-                  </style>
-                  <tr className="archivo">
-                    <th scope="row" style={{ fontWeight: 600 }}>
-                      {e.titulo}
-                    </th>
-                    <td style={{ fontWeight: 400, textTransform: "uppercase" }}>
-                      {e.tipo}
-                    </td>
-                    <td style={{ fontWeight: 400 }}>{e.fecha}</td>
-                    <td style={{ fontWeight: 400 }}>
-                      {e.tamanio < 1048576
-                        ? e.tamanio < 1024
-                          ? e.tamanio + " B"
-                          : (e.tamanio / 1024).toFixed(0) + " KB"
-                        : (e.tamanio / 1048576).toFixed(0) + " MB"}
-                    </td>
-                    <td
-                      style={{
-                        fontWeight: 400,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      José Daniel Vazquez Franco
-                    </td>
-                  </tr>
-                </Fragment>
+                <FilaVistaBiblioteca archivo={e}/>
               ))}
+
             </tbody>
           </table>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
