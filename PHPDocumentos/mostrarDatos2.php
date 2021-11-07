@@ -7,12 +7,13 @@ include "conectar.php";
 $array = array();
 $conn = conectarDB();
 
-$sql = 'SELECT usuario, nombre, idTipoUsuario FROM usuarios';
+$sql = 'SELECT id, usuario, nombre, idTipoUsuario FROM usuarios';
 $ejecutar = mysqli_query($conn,$sql);
 
 
 while($fila = mysqli_fetch_assoc($ejecutar)) {
     $vector[] = array(
+	  "id" => $fila['id'],
       "usuario" => $fila['usuario'],
       "nombre" => $fila['nombre'],
       "idTipoUsuario" => $fila['idTipoUsuario']

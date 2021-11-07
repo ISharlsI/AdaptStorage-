@@ -4,6 +4,7 @@ function FilaVistaUsuario({ usuario }) {
   const [Nombre, setNombre] = useState(usuario.nombre);
   const [Correo, setCorreo] = useState(usuario.usuario);
   const [Nivel, setNivel] = useState(usuario.idTipoUsuario);
+  const [IdUsuario, setIdUsuario] = useState(usuario.id);
 
   const handleChangeNivel = (event) => {
       setNivel((Nivel) => event.target.value);
@@ -11,7 +12,7 @@ function FilaVistaUsuario({ usuario }) {
   };
 
   const actualizarUsuario = () =>{
-    console.log(Nombre + " tekieromucho " + Correo);
+    console.log(Nombre + ", id:" + IdUsuario);
   }
 
   const eliminarUsuario = () =>{
