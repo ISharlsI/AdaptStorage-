@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-function VistaBiblioteca({toggleBiblio}) {
+function VistaBiblioteca({ toggleBiblio }) {
   let history = useHistory();
   const [extra, setExtra] = useState([]);
+
+  //Se declara variable de sesión
+  const [SesionUsuario, setSesionUsuario] = useState(
+    JSON.parse(localStorage.getItem("sesion_usuario")) || ""
+  );
 
   useEffect(() => {
     obtenerArchivos();
@@ -17,11 +22,6 @@ function VistaBiblioteca({toggleBiblio}) {
     console.log(res.data);
     setExtra(res.data);
   }
-
-  //Se declara variable de sesión
-  const [SesionUsuario, setSesionUsuario] = useState(
-    JSON.parse(localStorage.getItem("sesion_usuario")) || ""
-  );
 
   function navegarSubirArchivo() {
     history.push("/subir");
@@ -120,7 +120,7 @@ function VistaBiblioteca({toggleBiblio}) {
             </svg>
             {" Subir Archivo"}
           </button>
-         {/* <button
+          {/* <button
             className="btn btn-dark carpeta"
             style={{
               marginLeft: "0.5rem",
@@ -141,31 +141,41 @@ function VistaBiblioteca({toggleBiblio}) {
             {" Nueva Carpeta"}
           </button>
           */}
+
+          {SesionUsuario.idTipoUsuario == 5 ? (
+            //SI EL USUARIO ES ADMIN, MOSTRAR BOTÓN VISTA CUENTAS USUARIO
+            <div>
+              <button
+                onClick={toggleBiblio}
+                className="btn btn-secondary ordenar"
+                style={{
+                  marginLeft: "0.5rem",
+                  marginRight: "auto",
+                  textTransform: "capitalize",
+                  fontWeight: "300",
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1.2rem"
+                  fill="currentColor"
+                  class="bi bi-person"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                </svg>
+                {" Vista Usuarios"}
+              </button>
+            </div>
+          ) : (
+            //SI EL USUARIO NO ES ADMIN, NO MOSTRAR NADA
+            <p></p>
+          )}
+
           <button
-            onClick={toggleBiblio}
             className="btn btn-secondary ordenar"
             style={{
-              marginLeft: "0.5rem",
-              marginRight: "auto",
-              textTransform: "capitalize",
-              fontWeight: "300",
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1.2rem"
-              fill="currentColor"
-              class="bi bi-person"
-              viewBox="0 0 16 16"
-            >
-              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-            </svg>
-            {" Vista Usuarios"}
-          </button>
-          <button
-            className="btn btn-secondary ordenar"
-            style={{
-              marginLeft: "0.5rem",
+              marginLeft: "auto",
               marginRight: "0.5rem",
               textTransform: "capitalize",
               fontWeight: "300",
@@ -189,12 +199,14 @@ function VistaBiblioteca({toggleBiblio}) {
             paddingTop: "1rem",
             paddingRight: "3rem",
             paddingLeft: "3rem",
-            overflow: "auto",
           }}
         >
           <table
             className="table"
-            style={{ color: "#666", width: "100%", tableLayout: "fixed" }}
+            style={{ 
+              color: "#666", 
+              tableLayout: "fixed", 
+            }}
           >
             <thead>
               <tr style={{ fontStyle: "italic" }}>
@@ -215,26 +227,62 @@ function VistaBiblioteca({toggleBiblio}) {
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody style={{ borderTop: "solid 0.1rem #666"}}>
               {extra.map((e) => (
-                <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                  <th scope="row" style={{ fontWeight: 600 }}>
-                    {e.titulo}
-                  </th>
-                  <td style={{ fontWeight: 400, textTransform:"uppercase" }}>{e.tipo}</td>
-                  <td style={{ fontWeight: 400 }}>{e.fecha}</td>
-                  <td style={{ fontWeight: 400 }}>{e.tamanio < 1048576 ? (e.tamanio < 1024 ? (e.tamanio + " B") : ((e.tamanio/1024).toFixed(0) + " KB")) : ((e.tamanio/1048576).toFixed(0) + " MB")}</td>
-                  <td
-                    style={{
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    José Daniel Vazquez Franco
-                  </td>
-                </tr>
+                <Fragment>
+                  <style>
+                    {
+                      "\
+                      tr.archivo{\
+                        background: white;\
+                        color: #666;\
+                        border-right: solid white 0rem;\
+                        border-left: solid white 0rem;\
+                        transition: 0.3s;\
+                        border-bottom: solid 0.05rem #bbb;\
+                      }\
+                      tr.archivo:hover{\
+                        background: #2196f3;\
+                        color: white;\
+                        border-right: solid white 0.5rem;\
+                        border-left: solid white 0.5rem;\
+                        border-bottom: solid 0.05rem #bbb;\
+                      }\
+                      tr.archivo:active{\
+                        color: #2196f3;\
+                        background: white;\
+                        transition: 0.1s;\
+                      }\
+                      "
+                    }
+                  </style>
+                  <tr className="archivo">
+                    <th scope="row" style={{ fontWeight: 600 }}>
+                      {e.titulo}
+                    </th>
+                    <td style={{ fontWeight: 400, textTransform: "uppercase" }}>
+                      {e.tipo}
+                    </td>
+                    <td style={{ fontWeight: 400 }}>{e.fecha}</td>
+                    <td style={{ fontWeight: 400 }}>
+                      {e.tamanio < 1048576
+                        ? e.tamanio < 1024
+                          ? e.tamanio + " B"
+                          : (e.tamanio / 1024).toFixed(0) + " KB"
+                        : (e.tamanio / 1048576).toFixed(0) + " MB"}
+                    </td>
+                    <td
+                      style={{
+                        fontWeight: 400,
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      José Daniel Vazquez Franco
+                    </td>
+                  </tr>
+                </Fragment>
               ))}
             </tbody>
           </table>
