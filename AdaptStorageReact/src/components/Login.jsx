@@ -194,7 +194,7 @@ function Login({mostrarRegistro, logearUsuario}) {
                     "
                 }
               </style>
-              <a href="" style={{ textDecoration: "none" }}>
+              {/*<a href="" style={{ textDecoration: "none" }}>
                 <h6
                   className="card-subtitle text-muted"
                   style={{
@@ -205,7 +205,7 @@ function Login({mostrarRegistro, logearUsuario}) {
                 >
                   ¿Olvidaste tu constraseña?
                 </h6>
-              </a>
+                </a>*/}
             </div>
             
             <br />
