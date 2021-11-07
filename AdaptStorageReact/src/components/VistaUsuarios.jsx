@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import FilaVistaUsuario from "./FilaVistaUsuario";
 
 function VistaUsuarios({ toggleBiblio }) {
   const [extra2, setExtra2] = useState([]);
@@ -128,56 +129,7 @@ function VistaUsuarios({ toggleBiblio }) {
           <tbody>
             {/* Mostrar Usuarios */}
             {extra2.map((r) => (
-              <tr style={{ borderBottom: "solid 0.05rem #bbb" }}>
-                <th
-                  scope="row"
-                  style={{
-                    fontWeight: 600,
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {r.nombre}
-                </th>
-                <td style={{ fontWeight: 400 }}>{r.idTipoUsuario}</td>
-                <td
-                  style={{
-                    fontWeight: 400,
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {r.usuario}
-                </td>
-                <td
-                  style={{
-                    display: "flex",
-                    fontWeight: 400,
-                    justifyContent: "center",
-                    borderBottom: "none",
-                  }}
-                >
-                  <button
-                    type="button"
-                    className="btn btn-warning btn-sm"
-                    style={{ textTransform: "capitalize" }}
-                  >
-                    Editar
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-danger btn-sm"
-                    style={{
-                      textTransform: "capitalize",
-                      marginLeft: "0.5rem",
-                    }}
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
+              <FilaVistaUsuario usuario={r}/>
             ))}
           </tbody>
         </table>
