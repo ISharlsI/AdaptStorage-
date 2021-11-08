@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import FilaVistaUsuario from "./FilaVistaUsuario";
+import axios from "axios";
 
 function VistaUsuarios({ toggleBiblio }) {
   const [extra2, setExtra2] = useState([]);

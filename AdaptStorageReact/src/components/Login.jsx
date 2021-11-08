@@ -19,22 +19,22 @@ const enviarData = async (url, data) => {
   return json;
 };
 
-function Login({mostrarRegistro, logearUsuario}) {
+function Login({ mostrarRegistro }) {
   let history = useHistory();
 
   //SE REVISA SI HAY SESIÓN INICIADA
-  if (localStorage.getItem('sesion_usuario') !== null) {
+  if (localStorage.getItem("sesion_usuario") !== null) {
     history.push("/biblioteca");
   }
 
-  const [Usuario, setUsuario] = useState("");
+  const [Usuario, setUsuario] = useState(localStorage.getItem("recien_registrado") || "" );
   const [Clave, setClave] = useState("");
   const [MensajeError, setMensajeError] = useState("");
-  const [MensajeLogin, setMensajeLogin] = useState("");
+  const [MensajeLogin, setMensajeLogin] = useState(localStorage.getItem("mensaje_recien_registrado") || "" );
 
   const validar = () => {
     if (Usuario === "" || Clave === "") {
-       setMensajeError((MensajeError) => "Asegurese de llenar todos los campos");
+      setMensajeError((MensajeError) => "Asegurese de llenar todos los campos");
       return false;
     }
 
@@ -70,7 +70,8 @@ function Login({mostrarRegistro, logearUsuario}) {
         setMensajeLogin((MensajeLogin) => "Bienvenido " + respuestaJson.nombre);
         setMensajeError((MensajeError) => "");
 
-        localStorage.setItem('sesion_usuario', JSON.stringify(respuestaJson));
+        localStorage.clear();
+        localStorage.setItem("sesion_usuario", JSON.stringify(respuestaJson));
         history.push("/biblioteca");
       } else {
         setMensajeLogin((MensajeLogin) => "");
@@ -106,7 +107,6 @@ function Login({mostrarRegistro, logearUsuario}) {
         <div className="card-body">
           {/*FORMULARIO DE LOGIN DE USUARIO*/}
 
-        
           <h6
             style={{
               color: "Green",
@@ -115,7 +115,6 @@ function Login({mostrarRegistro, logearUsuario}) {
           >
             {MensajeLogin}
           </h6>
-        
 
           <h6
             style={{
@@ -131,70 +130,70 @@ function Login({mostrarRegistro, logearUsuario}) {
           
           <form action="">
           */}
-            <div className="form-group row">
-              <label for="email" className="col-sm-2 col-form-label">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  fill="currentColor"
-                  className="bi bi-envelope"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
-                </svg>
-              </label>
-              <div className="col-sm-10">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="correo"
-                  aria-describedby="emailHelp"
-                  placeholder="Correo"
-                  value={Usuario}
-                  onChange={handleChangeInput}
-                  style={{
-                    width: "100%",
-                  }}
-                />
-              </div>
+          <div className="form-group row">
+            <label for="email" className="col-sm-2 col-form-label">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                fill="currentColor"
+                className="bi bi-envelope"
+                viewBox="0 0 16 16"
+              >
+                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
+              </svg>
+            </label>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                className="form-control"
+                id="correo"
+                aria-describedby="emailHelp"
+                placeholder="Correo"
+                value={Usuario}
+                onChange={handleChangeInput}
+                style={{
+                  width: "100%",
+                }}
+              />
             </div>
-            <div className="form-group row">
-              <label for="email" className="col-sm-2 col-form-label">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  fill="currentColor"
-                  className="bi bi-lock"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
-                </svg>
-              </label>
-              <div className="col-sm-10">
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  placeholder="Contraseña"
-                  value={Clave}
-                  onChange={handleChangeInput}
-                />
-              </div>
+          </div>
+          <div className="form-group row">
+            <label for="email" className="col-sm-2 col-form-label">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                fill="currentColor"
+                className="bi bi-lock"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+              </svg>
+            </label>
+            <div className="col-sm-10">
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                placeholder="Contraseña"
+                value={Clave}
+                onChange={handleChangeInput}
+              />
             </div>
+          </div>
 
-            <br />
+          <br />
 
-            <div>
-              <style>
-                {
-                  "\
+          <div>
+            <style>
+              {
+                "\
                       h6:hover{\
                         text-decoration: solid underline 2px\
                       }\
                     "
-                }
-              </style>
-              {/*<a href="" style={{ textDecoration: "none" }}>
+              }
+            </style>
+            {/*<a href="" style={{ textDecoration: "none" }}>
                 <h6
                   className="card-subtitle text-muted"
                   style={{
@@ -206,23 +205,23 @@ function Login({mostrarRegistro, logearUsuario}) {
                   ¿Olvidaste tu constraseña?
                 </h6>
                 </a>*/}
-            </div>
-            
-            <br />
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <button
-                onClick={handleLogin}
-                type="submit"
-                className="btn"
-                style={{
-                  background: "#5FF27A",
-                  color: "white",
-                  fontWeight: 400,
-                }}
-              >
-                Ingresar
-              </button>
-            </div>
+          </div>
+
+          <br />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button
+              onClick={handleLogin}
+              type="submit"
+              className="btn"
+              style={{
+                background: "#5FF27A",
+                color: "white",
+                fontWeight: 400,
+              }}
+            >
+              Ingresar
+            </button>
+          </div>
           {/*</form>*/}
 
           <div style={{ marginTop: "20%" }}>

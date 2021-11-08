@@ -218,6 +218,9 @@ function VistaBiblioteca({ toggleBiblio }) {
                   Tipo
                 </th>
                 <th className="col-1" scope="col" style={{ fontWeight: 600 }}>
+                  Seguridad
+                </th>
+                <th className="col-1" scope="col" style={{ fontWeight: 600 }}>
                   Fecha
                 </th>
                 <th className="col-1" scope="col" style={{ fontWeight: 600 }}>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2021 a las 01:17:23
+-- Tiempo de generación: 08-11-2021 a las 23:53:03
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -44,16 +44,17 @@ CREATE TABLE `archivos` (
 --
 
 INSERT INTO `archivos` (`id`, `titulo`, `tipo`, `tamanio`, `ruta`, `fecha`, `contenido`, `nivel_seguridad`, `namePropietario`) VALUES
-(1, 'Respuestas', 'TXT', '2000', 'uploads/Respuestas.txt', '2021-11-11', '', 0, ''),
-(5, 'prueba_login', 'sql', '7705', 'uploads/prueba_login.sql', '2021-11-07', 'Prueba', 0, ''),
-(6, 'prueba_login', 'sql', '7705', 'uploads/prueba_login.sql', '2021-11-07', 'Prueba', 5, ''),
 (7, 'prueba_login', 'sql', '7705', 'uploads/prueba_login.sql', '2021-11-07', 'Prueba', 5, '1'),
 (8, 'estadisticas', 'pdf', '368196', 'uploads/estadisticas.pdf', '2021-11-07', 'Prueba', 1, 'Carlos Alberto Conchas'),
 (9, 'prueba_login', 'sql', '7705', 'uploads/prueba_login.sql', '2021-11-07', 'Prueba', 1, 'Juan'),
 (10, 'estadisticas', 'pdf', '368196', 'uploads/estadisticas.pdf', '2021-11-07', 'Prueba', 1, 'Juan'),
 (11, 'estadisticas', 'pdf', '368196', 'uploads/estadisticas.pdf', '2021-11-07', 'Prueba', 1, 'Juan'),
 (12, '3er_avan_1_jgup-(bases-de-datos)', 'pdf', '1386831', 'uploads/3er_avan_1_jgup-(bases-de-datos).pdf', '2021-11-07', 'Prueba', 5, '1'),
-(13, 'horario', 'xlsx', '11249', 'uploads/horario.xlsx', '2021-11-07', 'Prueba', 2, 'Juan Guillermo');
+(13, 'horario', 'xlsx', '11249', 'uploads/horario.xlsx', '2021-11-07', 'Prueba', 2, 'Juan Guillermo'),
+(14, 'algoritmos-de-ordenamiento-(juan-uribe---19310177)', 'pdf', '268995', 'uploads/algoritmos-de-ordenamiento-(juan-uribe---19310177).pdf', '2021-11-08', 'Prueba', 1, 'Daniel Cervantes Hernandez Palma José Porfirio Hermenejildo de la Santisima Trinidad'),
+(15, '3ro_avan_2_jgup-(des.-web)', 'pdf', '11884156', 'uploads/3ro_avan_2_jgup-(des.-web).pdf', '2021-11-08', 'Prueba', 1, 'Daniel Cervantes Hernandez Palma José Porfirio Hermenejildo de la Santisima Trinidad'),
+(16, '2do_prac_2.7_jgup-(des.-web)', 'pdf', '1991290', 'uploads/2do_prac_2.7_jgup-(des.-web).pdf', '2021-11-08', 'Prueba', 4, 'Daniel Cervantes Hernandez Palma José Porfirio Hermenejildo de la Santisima Trinidad'),
+(17, 'arrempujala,-arremangala-si,-arrempujala,-arremangala-no,-arrempujala,-arremangala-si,-arrempujala,-', 'txt', '0', 'uploads/arrempujala,-arremangala-si,-arrempujala,-arremangala-no,-arrempujala,-arremangala-si,-arrem', '2021-11-08', 'Prueba', 4, 'Daniel Cervantes Hernandez Palma José Porfirio Hermenejildo de la Santisima Trinidad');
 
 -- --------------------------------------------------------
 
@@ -97,12 +98,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `usuario`, `clave`, `nombre`, `idTipoUsuario`) VALUES
-(1, 'dani', '$2y$10$r51CNOKhrQ9zp/ky6Ct2YeEv5kc6au4HBw4WTH87UgrP2EFsA5frG', 'Daniel Vazquez Franco', 2),
-(2, 'chats', '$2y$10$cuicSr3yZ0EMGRN7l57eqOEsJoWu39GH6b77aQTO8e/IwFdKioXcu', 'chats', 4),
-(3, 'asd', '$2y$10$3g14mSWc.lGLLd7UJSiuourM2no23krYsHtjmotw4rSmUUJlRN41O', 'Juan Guillermo', 2),
-(4, '1', '$2y$10$zl60LEiB.5XrpFONRuU7OO2HTi6rPuDhSXxNH7Szv7TOzFza7mfJO', '1', 5),
-(5, 'a', '$2y$10$qSjPUutWqP/nkuqb9QmjQuMBGWawrTZaogBeV254Pv9l/5rYoPTuu', 'Carlos Alberto Conchas Montañez', 1),
-(6, 'dab', '$2y$10$ZenG2G5USQPFwBZS66cr2uYMMZBNLzoSKdqvNPl7zZmF5cDQezFUa', 'Juan', 1);
+(7, '1', '$2y$10$5AZ.ldmyO7IYGhYlkTCrYO0TA35wWL/zLSdGR9hs34IwJU40ZiwNy', '1', 5);
 
 --
 -- Índices para tablas volcadas
@@ -134,7 +130,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
@@ -146,7 +142,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador único para el usuario', AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador único para el usuario', AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
