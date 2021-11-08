@@ -16,7 +16,9 @@ if($_FILES['documento'])
     $archivo_tmp_name = $_FILES["documento"]["tmp_name"];
     $size = $_FILES["documento"]["size"];
     $error = $_FILES["documento"]["error"];
- 
+    $nivelSeguridad = $_POST["nS"];
+    $propietario = $_POST["nombrePropietario"];
+
     if($error > 0){
         $response = array(
             "Código de error" => $error,
@@ -43,7 +45,7 @@ if($_FILES['documento'])
             date_default_timezone_set('America/Mexico_City');
             setlocale(LC_TIME, 'es_MX.UTF-8');
             $fecha_actual = date("Y-m-d"); 
-            $sql = "INSERT INTO archivos (titulo, tipo, tamanio, ruta, fecha, contenido) values ('$nombreArchivo', '$extension', '$size', '$upload_name', '$fecha_actual', 'Prueba' )";
+            $sql = "INSERT INTO archivos (titulo, tipo, tamanio, ruta, fecha, contenido, nivel_seguridad, namePropietario) values ('$nombreArchivo', '$extension', '$size', '$upload_name', '$fecha_actual', 'Prueba', '$nivelSeguridad', '$propietario' )";
             if ($conn->query($sql) === TRUE) {
                 //echo json_encode(array('conectado'=>"Registrado en la base de datos"));
               } else {

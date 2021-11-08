@@ -15,6 +15,9 @@ function SubirArchivo() {
 
   const [File, setFile] = useState(null);
   const [MensajeError, setMensajeError] = useState("");
+  const [IdUsuario, setIdUsuario] = useState(SesionUsuario.id);
+  const [nivelSeguridad, setNivelSeguridad] = useState(SesionUsuario.idTipoUsuario);
+  const [usuarioPropietario, setUsuarioPropietario] = useState(SesionUsuario.nombre);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -37,12 +40,16 @@ function SubirArchivo() {
   const uploadFile = async (File) => {
     const formData = new FormData();
     formData.append("documento", File);
+    formData.append("id_usuario", IdUsuario);
+    formData.append("nS", nivelSeguridad);
+    formData.append("nombrePropietario", usuarioPropietario);
     return await axios.post(UPLOAD_ENDPOINT, formData, {
       headers: {
         "Content-Type": "application/json",
       },
     });
   };
+
 
   return (
     <div>
@@ -149,6 +156,7 @@ function SubirArchivo() {
           }}
         >
           <button
+
             type="submit"
             className="btn btn-primary subir"
             style={{

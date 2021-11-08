@@ -7,7 +7,7 @@ include "conectar.php";
 $array = array();
 $conn = conectarDB();
 
-$sql = 'SELECT titulo, tipo, tamanio, fecha FROM archivos';
+$sql = 'SELECT titulo, tipo, tamanio, fecha, namePropietario FROM archivos';
 $ejecutar = mysqli_query($conn,$sql);
 
 
@@ -16,7 +16,8 @@ while($fila = mysqli_fetch_assoc($ejecutar)) {
       "titulo" => $fila['titulo'],
       "tipo" => $fila['tipo'],
       "tamanio" => $fila['tamanio'],
-      "fecha" => $fila['fecha'] ); }
+      "fecha" => $fila['fecha'],
+      "name" => $fila['namePropietario']); }
       
 $conn->close();
 $json = json_encode($vector);

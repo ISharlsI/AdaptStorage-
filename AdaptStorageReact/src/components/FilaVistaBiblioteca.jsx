@@ -52,7 +52,7 @@ function FilaVistaBiblioteca({ archivo }) {
                         textOverflow: "ellipsis",
                       }}
                     >
-                      José Daniel Vazquez Franco
+                      {archivo.name}
                     </td>
                   </tr>
         </Fragment>
