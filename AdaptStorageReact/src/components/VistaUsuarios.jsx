@@ -83,6 +83,8 @@ function VistaUsuarios({ toggleBiblio }) {
             </svg>
             {" Vista Biblioteca"}
           </button>
+
+        {/* 
           <button
             className="btn btn-secondary ordenar"
             style={{
@@ -101,6 +103,8 @@ function VistaUsuarios({ toggleBiblio }) {
             </svg>
             {" Ordenar"}
           </button>
+        */}
+        
         </div>
       </div>
       <div

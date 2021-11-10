@@ -105,6 +105,8 @@ function Navbar({actualizarBusqueda}) {
                 }}
               />
             </div>
+
+          {/*
             <button
               className="btn btn-secondary buscar"
               type="submit"
@@ -117,6 +119,8 @@ function Navbar({actualizarBusqueda}) {
             >
               Buscar
             </button>
+          */}
+          
           </div>
         </div>
 

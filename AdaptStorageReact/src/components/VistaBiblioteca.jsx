@@ -46,9 +46,6 @@ function VistaBiblioteca({ toggleBiblio }) {
     history.push("/subir");
   }
 
-  
-  //EXPERIMETNO BUSQUEDA-----------------------------------------------------
-
   return (
     //------------------- VISTA BIBLIOTECA --------------------
     <div>
@@ -196,7 +193,8 @@ function VistaBiblioteca({ toggleBiblio }) {
             //SI EL USUARIO NO ES ADMIN, NO MOSTRAR NADA
             <p></p>
           )}
- 
+          
+        {/*
           <button
             className="btn btn-secondary ordenar"
             style={{
@@ -217,6 +215,8 @@ function VistaBiblioteca({ toggleBiblio }) {
             </svg>
             {" Ordenar"}
           </button>
+         */}
+
         </div>
         <div
           className="container-fluid"
