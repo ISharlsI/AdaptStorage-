@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import VistaBiblioteca from "../components/VistaBiblioteca";
 import VistaUsuarios from "../components/VistaUsuarios";
 
@@ -28,7 +27,6 @@ function BibliotecaUsuario() {
   //Se muestra la biblioteca
   return (
     <div>
-      <Navbar/>
       {VistaBiblio ? (
         //------------------- VISTA BIBLIOTECA --------------------
         <VistaBiblioteca toggleBiblio={toggleBiblio} />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FilaVistaUsuario from "./FilaVistaUsuario";
+import Navbar from "../components/Navbar";
 import axios from "axios";
 
 function VistaUsuarios({ toggleBiblio }) {
@@ -17,8 +18,13 @@ function VistaUsuarios({ toggleBiblio }) {
     setExtra2(res2.data);
   }
 
+  const actualizarBusqueda = (valor) => {
+    toggleBiblio();
+  }
+
   return (
     <div className="">
+      <Navbar actualizarBusqueda={actualizarBusqueda}/>
       <div
         className="container-fluid"
         style={{

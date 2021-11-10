@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import axios from "axios";
 import FilaVistaBiblioteca from "./FilaVistaBiblioteca";
 
@@ -28,9 +29,19 @@ function VistaBiblioteca({ toggleBiblio }) {
     history.push("/subir");
   }
 
+  //EXPERIMETNO BUSQUEDA-------------------------------------------------
+  const [Busqueda, setBusqueda] = useState('primer valor');
+
+  const actualizarBusqueda = (valor) => {
+    setBusqueda(valor);
+  }
+  //EXPERIMETNO BUSQUEDA-----------------------------------------------------
+
   return (
     //------------------- VISTA BIBLIOTECA --------------------
     <div>
+      <Navbar actualizarBusqueda={actualizarBusqueda}/>
+      <h1>{"Vista Biblioteca: " + Busqueda}</h1>
       <div className="">
         <div
           className="container-fluid"

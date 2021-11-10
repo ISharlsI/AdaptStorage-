@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import logo from "../img/Logo_AdaptStorage_Blanco.png";
 import DropdownUsuario from "./DropdownUsuario";
 
-export default function Navbar() {
+function Navbar({actualizarBusqueda}) {
   const [ SesionUsuario, setSesionUsuario ] = useState(JSON.parse(localStorage.getItem('sesion_usuario')));
   const [ MostrarDropdown, setMostrarDropdown ] = useState(false);
+  const [Busqueda, setBusqueda] = useState('');
 
   const toggleMostrarDropdown = () => {
     setMostrarDropdown((prevMostrarDropdown) => !prevMostrarDropdown);
   }
+
+  const handleChangeBuscar = (event) => {
+    setBusqueda(event.target.value);
+    actualizarBusqueda(Busqueda);
+  };
 
   return (
     <div>
@@ -90,7 +96,9 @@ export default function Navbar() {
               <input
                 className="form-control me-sm-2 buscar"
                 type="text"
-                placeholder="Search"
+                placeholder="Buscar"
+                onChange={handleChangeBuscar}
+                value={Busqueda}
                 style={{
                   fontSize: "1rem",
                   fontWeight: "300",
@@ -215,3 +223,5 @@ export default function Navbar() {
     </div>
   );
 }
+
+export default Navbar;
