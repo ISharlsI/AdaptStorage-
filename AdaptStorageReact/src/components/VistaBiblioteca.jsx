@@ -6,13 +6,15 @@ import FilaVistaBiblioteca from "./FilaVistaBiblioteca";
 
 function VistaBiblioteca({ toggleBiblio }) {
   let history = useHistory();
-  const [extra, setExtra] = useState([]);
+  
 
   //Se declara variable de sesión
   const [SesionUsuario, setSesionUsuario] = useState(
     JSON.parse(localStorage.getItem("sesion_usuario")) || ""
   );
 
+  const [extra, setExtra] = useState([]);
+  const [tablaUsuarios, setTablaUsuarios] = useState([]);
   useEffect(() => {
     obtenerArchivos();
   }, []);
@@ -23,17 +25,27 @@ function VistaBiblioteca({ toggleBiblio }) {
     );
     console.log(res.data);
     setExtra(res.data);
+    setTablaUsuarios(res.data);
+  }
+
+  const filtrar = (terminoBusqueda)=>{
+    var resultadoBusqueda = tablaUsuarios.filter((elemento)=>{
+      if(elemento.titulo.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())){
+        return elemento;
+      }
+    });
+    setExtra(resultadoBusqueda);
   }
 
   function navegarSubirArchivo() {
     history.push("/subir");
   }
 
-  //EXPERIMETNO BUSQUEDA-------------------------------------------------
-  const [Busqueda, setBusqueda] = useState('primer valor');
-
   const actualizarBusqueda = (valor) => {
-    setBusqueda(valor);
+    if(valor.length <= 1){
+      obtenerArchivos();
+    }
+    filtrar(valor);
   }
   //EXPERIMETNO BUSQUEDA-----------------------------------------------------
 
@@ -41,7 +53,6 @@ function VistaBiblioteca({ toggleBiblio }) {
     //------------------- VISTA BIBLIOTECA --------------------
     <div>
       <Navbar actualizarBusqueda={actualizarBusqueda}/>
-      <h1>{"Vista Biblioteca: " + Busqueda}</h1>
       <div className="">
         <div
           className="container-fluid"
@@ -132,6 +143,8 @@ function VistaBiblioteca({ toggleBiblio }) {
             </svg>
             {" Subir Archivo"}
           </button>
+
+         
           {/* <button
             className="btn btn-dark carpeta"
             style={{
@@ -183,7 +196,7 @@ function VistaBiblioteca({ toggleBiblio }) {
             //SI EL USUARIO NO ES ADMIN, NO MOSTRAR NADA
             <p></p>
           )}
-
+ 
           <button
             className="btn btn-secondary ordenar"
             style={{
