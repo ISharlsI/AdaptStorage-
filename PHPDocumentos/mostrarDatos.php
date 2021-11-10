@@ -7,7 +7,7 @@ include "conectar.php";
 $array = array();
 $conn = conectarDB();
 
-$sql = 'SELECT titulo, tipo, tamanio, fecha, namePropietario, nivel_seguridad FROM archivos';
+$sql = 'SELECT titulo, tipo, tamanio, fecha, namePropietario, nivel_seguridad FROM archivos ORDER BY titulo';
 $ejecutar = mysqli_query($conn,$sql);
 
 
@@ -24,6 +24,4 @@ $conn->close();
 $json = json_encode($vector);
 
 echo $json;
-
-
 ?>

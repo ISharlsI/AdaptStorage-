@@ -15,6 +15,7 @@ function VistaBiblioteca({ toggleBiblio }) {
 
   const [extra, setExtra] = useState([]);
   const [tablaUsuarios, setTablaUsuarios] = useState([]);
+
   useEffect(() => {
     obtenerArchivos();
   }, []);
@@ -37,16 +38,15 @@ function VistaBiblioteca({ toggleBiblio }) {
     setExtra(resultadoBusqueda);
   }
 
+  const actualizarBusqueda = (valor) => {
+    filtrar(valor);
+  }
+
   function navegarSubirArchivo() {
     history.push("/subir");
   }
 
-  const actualizarBusqueda = (valor) => {
-    if(valor.length <= 1){
-      obtenerArchivos();
-    }
-    filtrar(valor);
-  }
+  
   //EXPERIMETNO BUSQUEDA-----------------------------------------------------
 
   return (

@@ -13,7 +13,7 @@ function Navbar({actualizarBusqueda}) {
 
   const handleChangeBuscar = (event) => {
     setBusqueda(event.target.value);
-    actualizarBusqueda(Busqueda);
+    actualizarBusqueda(event.target.value);
   };
 
   return (
