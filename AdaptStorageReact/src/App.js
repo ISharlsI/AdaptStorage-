@@ -45,10 +45,6 @@ function App() {
             {/* -----------------------BIBLIOTECA USUARIO--------------------- */}
             <BibliotecaUsuario />
           </Route>
-
-          <Route exact path="/bibliotecaAdmin">
-            {/* -----------------------BIBLIOTECA ADMON--------------------- */}
-          </Route>
           <Route exact path="/subir">
             {/* -----------------------Subir archivo--------------------- */}
             <SubirArchivo />

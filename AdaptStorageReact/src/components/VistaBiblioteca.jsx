@@ -164,7 +164,7 @@ function VistaBiblioteca({ toggleBiblio }) {
           </button>
           */}
 
-          {SesionUsuario.idTipoUsuario == 5 ? (
+          {SesionUsuario.idTipoUsuario == 4 ? (
             //SI EL USUARIO ES ADMIN, MOSTRAR BOTÓN VISTA CUENTAS USUARIO
             <div>
               <button
@@ -194,7 +194,6 @@ function VistaBiblioteca({ toggleBiblio }) {
             <p></p>
           )}
           
-        {/*
           <button
             className="btn btn-secondary ordenar"
             style={{
@@ -215,7 +214,6 @@ function VistaBiblioteca({ toggleBiblio }) {
             </svg>
             {" Ordenar"}
           </button>
-         */}
 
         </div>
         <div

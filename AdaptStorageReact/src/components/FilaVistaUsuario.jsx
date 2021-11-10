@@ -109,13 +109,6 @@ function FilaVistaUsuario({ usuario }) {
           ) : (
             <option value="4">4</option>
           )}
-          {Nivel == 5 ? (
-            <option value="5" selected>
-              5
-            </option>
-          ) : (
-            <option value="5">5</option>
-          )}
         </select>
         <span
           style={{
@@ -165,7 +158,7 @@ function FilaVistaUsuario({ usuario }) {
             marginLeft: "0.5rem",
           }}
         >
-          Eliminar
+          Inhabilitar
         </button>
       </td>
     </tr>
