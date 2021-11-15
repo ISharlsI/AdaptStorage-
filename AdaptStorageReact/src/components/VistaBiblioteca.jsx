@@ -3,10 +3,10 @@ import { useHistory } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import FilaVistaBiblioteca from "./FilaVistaBiblioteca";
+import DropdownOrdenar from "./DropdownOrdenar";
 
 function VistaBiblioteca({ toggleBiblio }) {
   let history = useHistory();
-  
 
   //Se declara variable de sesión
   const [SesionUsuario, setSesionUsuario] = useState(
@@ -15,6 +15,9 @@ function VistaBiblioteca({ toggleBiblio }) {
 
   const [extra, setExtra] = useState([]);
   const [tablaUsuarios, setTablaUsuarios] = useState([]);
+  const [Ordenar, setOrdenar] = useState("Fecha");
+  const [SentidoOrdenar, setSentidoOrdenar] = useState("Desc");
+  const [MostrarDropdownOrdenar, setMostrarDropdownOrdenar] = useState(false);
 
   useEffect(() => {
     obtenerArchivos();
@@ -29,18 +32,35 @@ function VistaBiblioteca({ toggleBiblio }) {
     setTablaUsuarios(res.data);
   }
 
-  const filtrar = (terminoBusqueda)=>{
-    var resultadoBusqueda = tablaUsuarios.filter((elemento)=>{
-      if(elemento.titulo.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())){
+  function toggleDropdownOrdenar() {
+    setMostrarDropdownOrdenar(!MostrarDropdownOrdenar);
+  }
+
+  function toggleSentidoOrdenar() {
+    if (SentidoOrdenar === "Desc") {
+      setSentidoOrdenar("Asc");
+    } else {
+      setSentidoOrdenar("Desc");
+    }
+  }
+
+  const filtrar = (terminoBusqueda) => {
+    var resultadoBusqueda = tablaUsuarios.filter((elemento) => {
+      if (
+        elemento.titulo
+          .toString()
+          .toLowerCase()
+          .includes(terminoBusqueda.toLowerCase())
+      ) {
         return elemento;
       }
     });
     setExtra(resultadoBusqueda);
-  }
+  };
 
   const actualizarBusqueda = (valor) => {
     filtrar(valor);
-  }
+  };
 
   function navegarSubirArchivo() {
     history.push("/subir");
@@ -49,7 +69,7 @@ function VistaBiblioteca({ toggleBiblio }) {
   return (
     //------------------- VISTA BIBLIOTECA --------------------
     <div>
-      <Navbar actualizarBusqueda={actualizarBusqueda}/>
+      <Navbar actualizarBusqueda={actualizarBusqueda} />
       <div className="">
         <div
           className="container-fluid"
@@ -141,7 +161,6 @@ function VistaBiblioteca({ toggleBiblio }) {
             {" Subir Archivo"}
           </button>
 
-         
           {/* <button
             className="btn btn-dark carpeta"
             style={{
@@ -193,14 +212,55 @@ function VistaBiblioteca({ toggleBiblio }) {
             //SI EL USUARIO NO ES ADMIN, NO MOSTRAR NADA
             <p></p>
           )}
-          
+
           <button
             className="btn btn-secondary ordenar"
+            onClick={toggleSentidoOrdenar}
             style={{
               marginLeft: "auto",
+              textTransform: "capitalize",
+              fontWeight: "300",
+            }}
+          >
+            {SentidoOrdenar == "Desc" ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="1.2rem"
+                fill="currentColor"
+                className="bi bi-filter"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="1.2rem"
+                fill="currentColor"
+                className="bi bi-filter"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
+                />
+              </svg>
+            )}
+            {" " + SentidoOrdenar + "."}
+          </button>
+          <button
+            className="btn btn-secondary ordenar"
+            onClick={toggleDropdownOrdenar}
+            style={{
+              marginLeft: "1rem",
               marginRight: "0.5rem",
               textTransform: "capitalize",
               fontWeight: "300",
+              zIndex:2,
+              width:"8rem"
             }}
           >
             <svg
@@ -214,6 +274,11 @@ function VistaBiblioteca({ toggleBiblio }) {
             </svg>
             {" Ordenar"}
           </button>
+            {MostrarDropdownOrdenar ? (
+            <DropdownOrdenar setOrdenar = {setOrdenar} toggleDropdownOrdenar={toggleDropdownOrdenar}/>
+            ) : (
+              <span></span>
+            )}
 
         </div>
         <div
@@ -226,9 +291,9 @@ function VistaBiblioteca({ toggleBiblio }) {
         >
           <table
             className="table"
-            style={{ 
-              color: "#666", 
-              tableLayout: "fixed", 
+            style={{
+              color: "#666",
+              tableLayout: "fixed",
             }}
           >
             <thead>
@@ -253,13 +318,11 @@ function VistaBiblioteca({ toggleBiblio }) {
                 </th>
               </tr>
             </thead>
-            <tbody style={{ borderTop: "solid 0.1rem #666"}}>
-              
-            {/*RENDERIZAR FILAS DE TABLA ARCHIVO*/}
+            <tbody style={{ borderTop: "solid 0.1rem #666" }}>
+              {/*RENDERIZAR FILAS DE TABLA ARCHIVO*/}
               {extra.map((e) => (
-                <FilaVistaBiblioteca archivo={e}/>
+                <FilaVistaBiblioteca archivo={e} />
               ))}
-
             </tbody>
           </table>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
