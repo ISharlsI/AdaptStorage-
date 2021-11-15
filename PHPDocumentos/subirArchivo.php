@@ -5,10 +5,12 @@ header("Access-Control-Allow-Methods: PUT, GET, POST");
 $response = array();
 $upload_dir = 'uploads/';
 $server_url = 'http://localhost/AdaptStorage/';
-
+include "vendor/autoload.php";
 include "conectar.php";
+include "docx2text.php";
 $conn = conectarDB();
 $conn->set_charset('utf8');
+
 
 if($_FILES['documento'])
 {
@@ -33,6 +35,7 @@ if($_FILES['documento'])
         $path = $server_url."/".$upload_name;
         $extension = pathinfo($path, PATHINFO_EXTENSION);
         $nombreArchivo = pathinfo($path, PATHINFO_FILENAME);
+        
      
         if(move_uploaded_file($archivo_tmp_name , $upload_name)) {
             $response = array(
@@ -41,11 +44,37 @@ if($_FILES['documento'])
                 "message" => "Archivo subido a la carpeta de localhost",
                 "url" => $server_url."/".$upload_name
               );
-               
+
+            if($extension == 'txt'){
+
+                $contenido = file_get_contents($path);  
+
+            }else if($extension == 'pdf'){
+                
+                // Iniciamos la libreria
+                $parser = new \Smalot\PdfParser\Parser(); 
+                // Pasamos el archivo a la libreria
+                $pdf = $parser->parseFile($path); 
+                // Extraemos el texto
+                $contenido = $pdf->getText();
+                // Damos un salto de linea cada que comience un nuevo string
+                //$contenido = nl2br($textContent);
+                
+            }else if($extension == 'docx'){
+                
+                $converter = new DocxToTextConversion($upload_dir.strtolower($archivo_name));
+                $contenido = $converter->convertToText();
+
+            }else{
+
+                $contenido = '';
+
+            }
+
             date_default_timezone_set('America/Mexico_City');
             setlocale(LC_TIME, 'es_MX.UTF-8');
             $fecha_actual = date("Y-m-d"); 
-            $sql = "INSERT INTO archivos (titulo, tipo, tamanio, ruta, fecha, contenido, nivel_seguridad, namePropietario) values ('$nombreArchivo', '$extension', '$size', '$upload_name', '$fecha_actual', 'Prueba', '$nivelSeguridad', '$propietario' )";
+            $sql = "INSERT INTO archivos (titulo, tipo, tamanio, ruta, fecha, contenido, nivel_seguridad, namePropietario) values ('$nombreArchivo', '$extension', '$size', '$upload_name', '$fecha_actual', '$contenido', '$nivelSeguridad', '$propietario' )";
             if ($conn->query($sql) === TRUE) {
                 //echo json_encode(array('conectado'=>"Registrado en la base de datos"));
               } else {
