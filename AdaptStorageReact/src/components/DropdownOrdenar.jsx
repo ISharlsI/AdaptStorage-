@@ -102,7 +102,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         </button>
         <button
           onClick={handleClick}
-          id="Tamaño"
+          id="Tamano"
           className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
