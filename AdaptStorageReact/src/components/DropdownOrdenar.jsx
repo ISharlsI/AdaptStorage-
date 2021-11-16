@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const dropOrdenardownOrdenar = ({setOrdenar, toggledropOrdenardownOrdenar}) => {
+const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
 
   const handleClick = (event) => {
     setOrdenar(event.target.id);
-    toggledropOrdenardownOrdenar();
+    toggleDropdownOrdenar();
   };
 
   return (
@@ -131,4 +131,4 @@ const dropOrdenardownOrdenar = ({setOrdenar, toggledropOrdenardownOrdenar}) => {
   );
 };
 
-export default dropOrdenardownOrdenar;
+export default DropdownOrdenar;
