@@ -15,7 +15,7 @@ function DropdownUsuario() {
       style={{
         position: "absolute",
         right:"0px",
-        zIndex: 1,
+        zIndex: 2,
         width: "auto",
         maxWidth: "12rem",
         float: "right",

@@ -259,7 +259,7 @@ function VistaBiblioteca({ toggleBiblio }) {
               marginRight: "0.5rem",
               textTransform: "capitalize",
               fontWeight: "300",
-              zIndex:2,
+              zIndex:1,
               width:"8rem"
             }}
           >

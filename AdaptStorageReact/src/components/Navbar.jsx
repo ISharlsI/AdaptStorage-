@@ -169,7 +169,7 @@ function Navbar({actualizarBusqueda}) {
             paddingLeft:"0.5rem",
             paddingRight:"2rem",
             height:"6rem",
-            zIndex: 2
+            zIndex: 3
           }}
         >
           <div

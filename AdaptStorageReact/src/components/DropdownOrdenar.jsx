@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
+const dropOrdenardownOrdenar = ({setOrdenar, toggledropOrdenardownOrdenar}) => {
 
   const handleClick = (event) => {
     setOrdenar(event.target.id);
-    toggleDropdownOrdenar();
+    toggledropOrdenardownOrdenar();
   };
 
   return (
@@ -21,7 +21,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         justifyContent: "center",
         border: "solid 3px #444",
         borderRadius: "5px",
-        zIndex: 1,
+        zIndex: 0,
       }}
     >
       <div
@@ -34,14 +34,14 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         <style>
           {
             "\
-                button.drop{\
+                button.dropOrdenar{\
                     border-radius: 0px;\
                     background: white;\
                     box-shadow: none;\
                     color: #444;\
                     transition: 0.2s;\
                 }\
-                button.drop:hover{\
+                button.dropOrdenar:hover{\
                     background: #444;\
                     color: white;\
                 }\
@@ -51,7 +51,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         <button
           onClick={handleClick}
           id="Nombre"
-          className="btn btn-secondary drop"
+          className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
             fontWeight: "400",
@@ -64,7 +64,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         <button
           onClick={handleClick}
           id="Tipo"
-          className="btn btn-secondary drop"
+          className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
             fontWeight: "400",
@@ -77,7 +77,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         <button
           onClick={handleClick}
           id="Seguridad"
-          className="btn btn-secondary drop"
+          className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
             fontWeight: "400",
@@ -90,7 +90,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         <button
           onClick={handleClick}
           id="Fecha"
-          className="btn btn-secondary drop"
+          className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
             fontWeight: "400",
@@ -103,7 +103,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         <button
           onClick={handleClick}
           id="Tamaño"
-          className="btn btn-secondary drop"
+          className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
             fontWeight: "400",
@@ -116,7 +116,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         <button
           onClick={handleClick}
           id="Propietario"
-          className="btn btn-secondary drop"
+          className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
             fontWeight: "400",
@@ -131,4 +131,4 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
   );
 };
 
-export default DropdownOrdenar;
+export default dropOrdenardownOrdenar;
