@@ -7,7 +7,16 @@ include "conectar.php";
 $array = array();
 $conn = conectarDB();
 
-$sql = 'SELECT titulo, tipo, tamanio, fecha, namePropietario, nivel_seguridad FROM archivos ORDER BY titulo';
+$tipo=$_GET['tipo'];
+
+if($_GET['orden']=="Desc"){
+  $sql = "SELECT titulo, tipo, tamanio, fecha, namePropietario, nivel_seguridad FROM archivos ORDER BY $tipo DESC";
+}
+if($_GET['orden']=="Asc"){
+  $sql = "SELECT titulo, tipo, tamanio, fecha, namePropietario, nivel_seguridad FROM archivos ORDER BY $tipo ASC";
+}
+
+
 $ejecutar = mysqli_query($conn,$sql);
 
 

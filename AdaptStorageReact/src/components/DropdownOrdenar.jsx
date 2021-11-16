@@ -50,7 +50,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         </style>
         <button
           onClick={handleClick}
-          id="Nombre"
+          id="titulo"
           className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
@@ -63,7 +63,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         </button>
         <button
           onClick={handleClick}
-          id="Tipo"
+          id="tipo"
           className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
@@ -76,7 +76,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         </button>
         <button
           onClick={handleClick}
-          id="Seguridad"
+          id="nivel_seguridad"
           className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
@@ -89,7 +89,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         </button>
         <button
           onClick={handleClick}
-          id="Fecha"
+          id="fecha"
           className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
@@ -102,7 +102,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         </button>
         <button
           onClick={handleClick}
-          id="Tamano"
+          id="tamanio"
           className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",
@@ -115,7 +115,7 @@ const DropdownOrdenar = ({setOrdenar, toggleDropdownOrdenar}) => {
         </button>
         <button
           onClick={handleClick}
-          id="Propietario"
+          id="namePropietario"
           className="btn btn-secondary dropOrdenar"
           style={{
             textTransform: "capitalize",

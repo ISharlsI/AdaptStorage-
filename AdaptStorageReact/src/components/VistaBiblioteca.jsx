@@ -15,19 +15,20 @@ function VistaBiblioteca({ toggleBiblio }) {
 
   const [extra, setExtra] = useState([]);
   const [tablaUsuarios, setTablaUsuarios] = useState([]);
-  const [Ordenar, setOrdenar] = useState("Fecha");
+  const [Ordenar, setOrdenar] = useState("fecha");
   const [SentidoOrdenar, setSentidoOrdenar] = useState("Desc");
   const [MostrarDropdownOrdenar, setMostrarDropdownOrdenar] = useState(false);
 
   useEffect(() => {
     obtenerArchivos();
-  }, []);
+  }, [Ordenar,SentidoOrdenar]);
 
   async function obtenerArchivos() {
     const res = await axios.get(
-      "http://localhost/AdaptStorage/mostrarDatos.php"
+      "http://localhost/AdaptStorage/mostrarDatos.php?orden=" +  SentidoOrdenar + "&tipo="+ Ordenar + ""
     );
     console.log(res.data);
+    console.log("http://localhost/AdaptStorage/mostrarDatos.php?orden=" +  SentidoOrdenar + "&tipo="+ Ordenar + "")
     setExtra(res.data);
     setTablaUsuarios(res.data);
   }
@@ -42,6 +43,7 @@ function VistaBiblioteca({ toggleBiblio }) {
     } else {
       setSentidoOrdenar("Desc");
     }
+    
   }
 
   const filtrar = (terminoBusqueda) => {
