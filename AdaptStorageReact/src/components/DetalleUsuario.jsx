@@ -114,7 +114,7 @@ const DetalleUsuario = ({ usuario, resetDetalle, refreshTablas }) => {
       <div className="card mb-3" style={{ background: "#D0DFF2" }}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="40"
+          width="30"
           fill="currentColor"
           className="bi bi-pencil-square"
           viewBox="0 0 16 16"
@@ -322,18 +322,6 @@ const DetalleUsuario = ({ usuario, resetDetalle, refreshTablas }) => {
                     "
               }
             </style>
-            {/*<a href="" style={{ textDecoration: "none" }}>
-                <h6
-                  className="card-subtitle text-muted"
-                  style={{
-                    textAlign: "center",
-                    fontWeight: 400,
-                    fontSize: 16,
-                  }}
-                >
-                  ¿Olvidaste tu constraseña?
-                </h6>
-                </a>*/}
           </div>
           <div
             style={{

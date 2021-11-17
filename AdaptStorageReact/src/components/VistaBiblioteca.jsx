@@ -334,8 +334,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
             ""
           )}
         </div>
-        {/*
-        Detalle.titulo ? (
+        {Detalle.titulo ? (
           <Fragment>
             <DetalleArchivo
               archivo={Detalle}
@@ -345,10 +344,19 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
           </Fragment>
         ) : (
           ""
-        )
-        */}
+        )}
+        <style>
+          {
+            "\
+          div.unfocus{\
+            filter: blur(2px);\
+            overflow: hidden;\
+          }\
+          "
+          }
+        </style>
         <div
-          className="container-fluid"
+          className={Detalle.titulo ? "unfocus" : ""}
           style={{
             paddingTop: "1rem",
             paddingRight: "3rem",
