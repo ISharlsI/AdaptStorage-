@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const URL_REGISTRO = "http://localhost/AdaptStorage/modificar.php";
 
-const DetalleUsuario = ({ usuario, resetDetalle, refreshUsuarios }) => {
+const DetalleUsuario = ({ usuario, resetDetalle, refreshTablas }) => {
   const [Nombre, setNombre] = useState(usuario.nombre);
   const [Correo, setCorreo] = useState(usuario.correo);
   const [Nivel, setNivel] = useState(usuario.nivel);
@@ -94,7 +94,7 @@ const DetalleUsuario = ({ usuario, resetDetalle, refreshUsuarios }) => {
       );
       const respuestaJson = await enviarData(URL_REGISTRO, data);
       console.log(respuestaJson);
-      refreshUsuarios();
+      refreshTablas();
     }
   };
 

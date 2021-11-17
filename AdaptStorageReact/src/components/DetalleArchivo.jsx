@@ -1,9 +1,9 @@
 import React from 'react';
 
-const DetalleArchivo = () => {
+const DetalleArchivo = ({ refreshTablas }) => {
     return (
-        <div>
-            
+        <div style={{border:'solid 30px red'}}>
+            asda
         </div>
     );
 }

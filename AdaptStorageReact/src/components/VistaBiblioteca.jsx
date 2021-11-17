@@ -5,8 +5,9 @@ import Paginacion from "./Paginacion";
 import axios from "axios";
 import FilaVistaBiblioteca from "./FilaVistaBiblioteca";
 import DropdownOrdenar from "./DropdownOrdenar";
+import DetalleArchivo from "./DetalleArchivo";
 
-function VistaBiblioteca({ toggleBiblio }) {
+function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
   let history = useHistory();
 
   //Se declara variable de sesión
@@ -19,17 +20,31 @@ function VistaBiblioteca({ toggleBiblio }) {
   const [Ordenar, setOrdenar] = useState("fecha");
   const [SentidoOrdenar, setSentidoOrdenar] = useState("Desc");
   const [MostrarDropdownOrdenar, setMostrarDropdownOrdenar] = useState(false);
+  const [Busqueda, setBusqueda] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
 
+  const [Detalle, setDetalle] = useState({
+    titulo: "",
+    tipo: "",
+    tamanio: "",
+    fecha: "",
+    name: "",
+    nivel: "",
+  });
+
   useEffect(() => {
     obtenerArchivos();
-  }, [Ordenar,SentidoOrdenar]);
-  
+  }, [Ordenar, SentidoOrdenar]);
+
   async function obtenerArchivos() {
     const res = await axios.get(
-      "http://localhost/AdaptStorage/mostrarDatos.php?orden=" +  SentidoOrdenar + "&tipo="+ Ordenar + ""
+      "http://localhost/AdaptStorage/mostrarDatos.php?orden=" +
+        SentidoOrdenar +
+        "&tipo=" +
+        Ordenar +
+        ""
     );
     console.log(res.data);
     setExtra(res.data);
@@ -40,11 +55,28 @@ function VistaBiblioteca({ toggleBiblio }) {
     setMostrarDropdownOrdenar(!MostrarDropdownOrdenar);
   }
 
+  function cambiarOrdenar(event) {
+    setOrdenar(event.target.id);
+    toggleDropdownOrdenar();
+
+    if (Busqueda !== "") {
+      setTimeout(function () {
+        filtrar(Busqueda);
+      }, 100);
+    }
+  }
+
   function toggleSentidoOrdenar() {
     if (SentidoOrdenar === "Desc") {
       setSentidoOrdenar("Asc");
     } else {
       setSentidoOrdenar("Desc");
+    }
+
+    if (Busqueda !== "") {
+      setTimeout(function () {
+        filtrar(Busqueda);
+      }, 100);
     }
   }
 
@@ -62,8 +94,19 @@ function VistaBiblioteca({ toggleBiblio }) {
     setExtra(resultadoBusqueda);
   };
 
+  function resetDetalle() {
+    setDetalle({
+      nombre: "",
+      correo: "",
+      nivel: "",
+      id: "",
+      estado: "",
+    });
+  }
+
   const actualizarBusqueda = (valor) => {
     filtrar(valor);
+    setBusqueda(valor);
   };
 
   function navegarSubirArchivo() {
@@ -270,8 +313,8 @@ function VistaBiblioteca({ toggleBiblio }) {
               marginRight: "0.5rem",
               textTransform: "capitalize",
               fontWeight: "300",
-              zIndex:1,
-              width:"8rem"
+              zIndex: 1,
+              width: "8rem",
             }}
           >
             <svg
@@ -285,13 +328,25 @@ function VistaBiblioteca({ toggleBiblio }) {
             </svg>
             {" Ordenar"}
           </button>
-            {MostrarDropdownOrdenar ? (
-            <DropdownOrdenar setOrdenar = {setOrdenar} toggleDropdownOrdenar={toggleDropdownOrdenar}/>
-            ) : (
-              <span></span>
-            )}
-
+          {MostrarDropdownOrdenar ? (
+            <DropdownOrdenar cambiarOrdenar={cambiarOrdenar} />
+          ) : (
+            ""
+          )}
         </div>
+        {/*
+        Detalle.titulo ? (
+          <Fragment>
+            <DetalleArchivo
+              archivo={Detalle}
+              resetDetalle={resetDetalle}
+              refreshTablas={refreshTablas}
+            />
+          </Fragment>
+        ) : (
+          ""
+        )
+        */}
         <div
           className="container-fluid"
           style={{
@@ -327,17 +382,35 @@ function VistaBiblioteca({ toggleBiblio }) {
                 <th className="col-1" scope="col" style={{ fontWeight: 600 }}>
                   Propietario
                 </th>
+                <th
+                  className="col"
+                  scope="col"
+                  style={{ fontWeight: 600, width: "3%" }}
+                ></th>
               </tr>
             </thead>
             <tbody style={{ borderTop: "solid 0.1rem #666" }}>
               {/*RENDERIZAR FILAS DE TABLA ARCHIVO*/}
-              {currentPosts.map((e) => (
-                <FilaVistaBiblioteca archivo={e}/>
-                ))}
-                <Paginacion postsPerPage={postsPerPage} totalPosts={extra.length} paginate={paginate}></Paginacion>
+              {Busqueda == ""
+                ? currentPosts.map((e) => (
+                    <FilaVistaBiblioteca archivo={e} setDetalle={setDetalle} />
+                  ))
+                : extra.map((e) => (
+                    <FilaVistaBiblioteca archivo={e} setDetalle={setDetalle} />
+                  ))}
             </tbody>
           </table>
-          
+          {Busqueda == "" ? (
+            <Paginacion
+              postsPerPage={postsPerPage}
+              totalPosts={extra.length}
+              paginate={paginate}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            ></Paginacion>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ function BibliotecaUsuario() {
     setVistaBiblio((prevVistaBiblio) => !prevVistaBiblio);
   }
 
-  function refreshUsuarios(){
+  function refreshTablas(){
     setVistaBiblio((prevVistaBiblio) => !prevVistaBiblio);
     setVistaBiblio((prevVistaBiblio) => !prevVistaBiblio);
   }
@@ -34,10 +34,10 @@ function BibliotecaUsuario() {
     <div>
       {VistaBiblio ? (
         //------------------- VISTA BIBLIOTECA --------------------
-        <VistaBiblioteca toggleBiblio={toggleBiblio} />
+        <VistaBiblioteca toggleBiblio={toggleBiblio} refreshTablas={refreshTablas}/>
       ) : (
         //------------------- VISTA CUENTAS ADMIN --------------------
-        <VistaUsuarios toggleBiblio={toggleBiblio} refreshUsuarios={refreshUsuarios}/>
+        <VistaUsuarios toggleBiblio={toggleBiblio} refreshTablas={refreshTablas}/>
       )}
     </div>
   );

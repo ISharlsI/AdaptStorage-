@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from 'react';
 
-const DropdownOrdenar = ({cambiarOrdenar}) => {
+const DropdownArchivo = () => {
 
-  const handleClick = (event) => {
-    cambiarOrdenar(event);
-  };
+    function handleClick(){
 
-  return (
-    <div
+    }
+
+    
+    return (
+        <div
       style={{
         position: "absolute",
         width: "8rem",
@@ -127,7 +128,7 @@ const DropdownOrdenar = ({cambiarOrdenar}) => {
         </button>
       </div>
     </div>
-  );
-};
+    );
+}
 
-export default DropdownOrdenar;
+export default DropdownArchivo;

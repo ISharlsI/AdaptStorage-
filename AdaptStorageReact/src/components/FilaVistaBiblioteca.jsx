@@ -1,9 +1,27 @@
 import React, { Fragment, useState } from "react";
 
-function FilaVistaBiblioteca({ archivo }) {
+function FilaVistaBiblioteca({ archivo, setDetalle }) {
+  const [Titulo, setTitulo] = useState(archivo.titulo);
+  const [Tipo, setTipoo] = useState(archivo.tipo);
+  const [Tamanio, setTamanio] = useState(archivo.tamanio);
+  const [Fecha, setFecha] = useState(archivo.fecha);
+  const [Name, setName] = useState(archivo.name);
+  const [Nivel, setNivel] = useState(archivo.nivel);
+  
   const [SesionUsuario, setSesionUsuario] = useState(
     JSON.parse(localStorage.getItem("sesion_usuario")) || ""
   );
+
+  function toggleDetalle(){
+    setDetalle({
+      titulo: Titulo,
+      tipo: Tipo,
+      tamanio: Tamanio,
+      fecha: Fecha,
+      name: Name,
+      nivel: Nivel
+    });
+  }
 
   const fecha = new Date(archivo.fecha);
   fecha.setDate(fecha.getDate() + 1);
@@ -36,11 +54,9 @@ function FilaVistaBiblioteca({ archivo }) {
           "
         }
       </style>
-      {archivo.nivel > SesionUsuario.idTipoUsuario ? (
-        <span></span>
-      ) : (
+      {archivo.nivel > SesionUsuario.idTipoUsuario ? <tr></tr> : (
         <Fragment>
-          <tr className="archivo">
+          <tr className="archivo" onClick={toggleDetalle}>
             <th
               scope="row"
               style={{
@@ -78,6 +94,37 @@ function FilaVistaBiblioteca({ archivo }) {
               }}
             >
               {archivo.name}
+            </td>
+            <td>
+              <style>
+                {
+                  "\
+                  button.mas{\
+                    border-radius:4px;\
+                    width:1.8rem;\
+                    background: white;\
+                    color: #444;\
+                    border: none;\
+                    padding: 0px;\
+                    transition: 0.3s;\
+                  }\
+                  button.mas:hover{\
+                    background: #444;\
+                    color: white;\
+                  }\
+                  button.mas:active{\
+                    color: #2196f3;\
+                    background: white;\
+                    transition: 0.1s;\
+                  }\
+                  "
+                }
+              </style>
+              <button className='mas'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                  <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                </svg>
+              </button>
             </td>
           </tr>
         </Fragment>

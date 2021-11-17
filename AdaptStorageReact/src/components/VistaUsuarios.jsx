@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import DetalleUsuario from "./DetalleUsuario";
 
-function VistaUsuarios({ toggleBiblio, refreshUsuarios }) {
+function VistaUsuarios({ toggleBiblio, refreshTablas }) {
   const [extra2, setExtra2] = useState([]);
   const [Detalle, setDetalle] = useState({
     nombre: "",
@@ -135,7 +135,7 @@ function VistaUsuarios({ toggleBiblio, refreshUsuarios }) {
       >
         {Detalle.nombre ? (
           <Fragment>
-            <DetalleUsuario usuario={Detalle} resetDetalle={resetDetalle} refreshUsuarios={refreshUsuarios}/>
+            <DetalleUsuario usuario={Detalle} resetDetalle={resetDetalle} refreshTablas={refreshTablas}/>
           </Fragment>
         ) : (
           <span></span>
@@ -178,45 +178,6 @@ function VistaUsuarios({ toggleBiblio, refreshUsuarios }) {
               ))}
             </tbody>
           </table>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <ul className="pagination" style={{ zIndex: 0 }}>
-              <li className="page-item disabled">
-                <a className="page-link" href="#">
-                  &laquo;
-                </a>
-              </li>
-              <li className="page-item active">
-                <a className="page-link" href="#">
-                  1
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  3
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  4
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  5
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  &raquo;
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>

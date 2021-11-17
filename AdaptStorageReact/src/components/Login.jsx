@@ -75,7 +75,12 @@ function Login({ mostrarRegistro }) {
         history.push("/biblioteca");
       } else {
         setMensajeLogin((MensajeLogin) => "");
+        if (respuestaJson.error == 'Usuario inhabilitado.') {
+          setMensajeError((MensajeError) => "Esta cuenta ha sido inhabilitada");
+        }
+        else{
         setMensajeError((MensajeError) => "Al menos un dato es incorrecto");
+        }
       }
     } else {
       console.log("LLENE TODOS LOS DATOS");
