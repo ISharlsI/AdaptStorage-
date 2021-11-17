@@ -17,6 +17,11 @@ function BibliotecaUsuario() {
     setVistaBiblio((prevVistaBiblio) => !prevVistaBiblio);
   }
 
+  function refreshUsuarios(){
+    setVistaBiblio((prevVistaBiblio) => !prevVistaBiblio);
+    setVistaBiblio((prevVistaBiblio) => !prevVistaBiblio);
+  }
+
   //Se valida la sesión iniciada
   if (SesionUsuario === "") {
     //De no estar iniciada sesión,
@@ -32,7 +37,7 @@ function BibliotecaUsuario() {
         <VistaBiblioteca toggleBiblio={toggleBiblio} />
       ) : (
         //------------------- VISTA CUENTAS ADMIN --------------------
-        <VistaUsuarios toggleBiblio={toggleBiblio} />
+        <VistaUsuarios toggleBiblio={toggleBiblio} refreshUsuarios={refreshUsuarios}/>
       )}
     </div>
   );

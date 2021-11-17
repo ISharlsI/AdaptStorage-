@@ -1,14 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import FilaVistaUsuario from "./FilaVistaUsuario";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import DetalleUsuario from "./DetalleUsuario";
 
-function VistaUsuarios({ toggleBiblio }) {
+function VistaUsuarios({ toggleBiblio, refreshUsuarios }) {
   const [extra2, setExtra2] = useState([]);
+  const [Detalle, setDetalle] = useState({
+    nombre: "",
+    correo: "",
+    nivel: "",
+    id: "",
+    estado:""
+  });
 
   useEffect(() => {
     obtenerArchivos2();
-  }, []);
+  }, [Detalle]);
 
   async function obtenerArchivos2() {
     const res2 = await axios.get(
@@ -20,11 +28,21 @@ function VistaUsuarios({ toggleBiblio }) {
 
   const actualizarBusqueda = (valor) => {
     toggleBiblio();
+  };
+
+  function resetDetalle(){
+    setDetalle({
+      nombre: "",
+      correo: "",
+      nivel: "",
+      id: "",
+      estado:""
+    });
   }
 
   return (
     <div className="">
-      <Navbar actualizarBusqueda={actualizarBusqueda}/>
+      <Navbar actualizarBusqueda={actualizarBusqueda} />
       <div
         className="container-fluid"
         style={{
@@ -83,8 +101,8 @@ function VistaUsuarios({ toggleBiblio }) {
             </svg>
             {" Vista Biblioteca"}
           </button>
-          
-        {/*
+
+          {/*
           <button
             className="btn btn-secondary ordenar"
             style={{
@@ -104,7 +122,6 @@ function VistaUsuarios({ toggleBiblio }) {
             {" Ordenar"}
           </button>
         */}
-
         </div>
       </div>
       <div
@@ -116,71 +133,90 @@ function VistaUsuarios({ toggleBiblio }) {
           overflow: "auto",
         }}
       >
-        <table
-          className="table"
-          style={{ color: "#666", width: "100%", tableLayout: "fixed" }}
-        >
-          <thead>
-            <tr style={{ fontStyle: "italic" }}>
-              <th className="col-2" scope="col" style={{ fontWeight: 600 }}>
-                Nombre
-              </th>
-              <th className="col-2" scope="col" style={{ fontWeight: 600 }}>
-                Nivel de Seguridad
-              </th>
-              <th className="col-2" scope="col" style={{ fontWeight: 600 }}>
-                Correo
-              </th>
-              <th className="col-2" scope="col" style={{ fontWeight: 600 }}>
-                Acciones
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Mostrar Usuarios */}
-            {extra2.map((r) => (
-              <FilaVistaUsuario usuario={r}/>
-            ))}
-          </tbody>
-        </table>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <ul className="pagination">
-            <li className="page-item disabled">
-              <a className="page-link" href="#">
-                &laquo;
-              </a>
-            </li>
-            <li className="page-item active">
-              <a className="page-link" href="#">
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                2
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                3
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                4
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                5
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                &raquo;
-              </a>
-            </li>
-          </ul>
+        {Detalle.nombre ? (
+          <Fragment>
+            <DetalleUsuario usuario={Detalle} resetDetalle={resetDetalle} refreshUsuarios={refreshUsuarios}/>
+          </Fragment>
+        ) : (
+          <span></span>
+        )}
+        <style>
+          {
+            "\
+          div.unfocus{\
+            filter: blur(2px);\
+            overflow: hidden;\
+          }\
+          "
+          }
+        </style>
+        <div className={Detalle.nombre ? "unfocus" : ""} style={{ zIndex: 0 }}>
+          <table
+            className="table"
+            style={{ color: "#666", width: "100%", tableLayout: "fixed" }}
+          >
+            <thead>
+              <tr style={{ fontStyle: "italic" }}>
+                <th className="col-3" scope="col" style={{ fontWeight: 600 }}>
+                  Nombre
+                </th>
+                <th className="col-3" scope="col" style={{ fontWeight: 600 }}>
+                  Nivel de Seguridad
+                </th>
+                <th className="col-3" scope="col" style={{ fontWeight: 600 }}>
+                  Correo
+                </th>
+                <th className="col-3" scope="col" style={{ fontWeight: 600 }}>
+                  Estado
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Mostrar Usuarios */}
+              {extra2.map((r) => (
+                <FilaVistaUsuario usuario={r} setDetalle={setDetalle} />
+              ))}
+            </tbody>
+          </table>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <ul className="pagination" style={{ zIndex: 0 }}>
+              <li className="page-item disabled">
+                <a className="page-link" href="#">
+                  &laquo;
+                </a>
+              </li>
+              <li className="page-item active">
+                <a className="page-link" href="#">
+                  1
+                </a>
+              </li>
+              <li className="page-item">
+                <a className="page-link" href="#">
+                  2
+                </a>
+              </li>
+              <li className="page-item">
+                <a className="page-link" href="#">
+                  3
+                </a>
+              </li>
+              <li className="page-item">
+                <a className="page-link" href="#">
+                  4
+                </a>
+              </li>
+              <li className="page-item">
+                <a className="page-link" href="#">
+                  5
+                </a>
+              </li>
+              <li className="page-item">
+                <a className="page-link" href="#">
+                  &raquo;
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

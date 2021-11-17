@@ -7,7 +7,7 @@ include "conectar.php";
 $array = array();
 $conn = conectarDB();
 
-$sql = 'SELECT id, usuario, nombre, idTipoUsuario FROM usuarios';
+$sql = 'SELECT id, usuario, nombre, idTipoUsuario, estado FROM usuarios';
 $ejecutar = mysqli_query($conn,$sql);
 
 
@@ -16,7 +16,8 @@ while($fila = mysqli_fetch_assoc($ejecutar)) {
 	  "id" => $fila['id'],
       "usuario" => $fila['usuario'],
       "nombre" => $fila['nombre'],
-      "idTipoUsuario" => $fila['idTipoUsuario']
+      "idTipoUsuario" => $fila['idTipoUsuario'],
+      "estado" => $fila['estado']
        ); }
       
 $conn->close();

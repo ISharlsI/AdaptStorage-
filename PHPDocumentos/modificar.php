@@ -12,12 +12,13 @@
 	$Nombre = $dataObject-> Nombre;
 	$Correo=	$dataObject-> Correo;
   $Nivel=	$dataObject-> Nivel;
+  $Estado= $dataObject-> Estado;
 
 if($Nombre!=''){
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$sql="UPDATE usuarios SET usuario	= '$Correo', nombre = '$Nombre', idTipoUsuario	='$Nivel' WHERE id='$idUsuario' ";
+$sql="UPDATE usuarios SET usuario	= '$Correo', nombre = '$Nombre', idTipoUsuario	='$Nivel', estado='$Estado' WHERE id='$idUsuario' ";
 
 
 if ($conn->query($sql) === TRUE) {
