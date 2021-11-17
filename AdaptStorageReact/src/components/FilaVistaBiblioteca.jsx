@@ -49,6 +49,7 @@ function FilaVistaBiblioteca({ archivo }) {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               }}
+              key={archivo.id}
             >
               {archivo.titulo}
             </th>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Paginacion from "./Paginacion";
 import axios from "axios";
 import FilaVistaBiblioteca from "./FilaVistaBiblioteca";
 import DropdownOrdenar from "./DropdownOrdenar";
@@ -19,16 +20,18 @@ function VistaBiblioteca({ toggleBiblio }) {
   const [SentidoOrdenar, setSentidoOrdenar] = useState("Desc");
   const [MostrarDropdownOrdenar, setMostrarDropdownOrdenar] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+
   useEffect(() => {
     obtenerArchivos();
   }, [Ordenar,SentidoOrdenar]);
-
+  
   async function obtenerArchivos() {
     const res = await axios.get(
       "http://localhost/AdaptStorage/mostrarDatos.php?orden=" +  SentidoOrdenar + "&tipo="+ Ordenar + ""
     );
     console.log(res.data);
-    console.log("http://localhost/AdaptStorage/mostrarDatos.php?orden=" +  SentidoOrdenar + "&tipo="+ Ordenar + "")
     setExtra(res.data);
     setTablaUsuarios(res.data);
   }
@@ -43,7 +46,6 @@ function VistaBiblioteca({ toggleBiblio }) {
     } else {
       setSentidoOrdenar("Desc");
     }
-    
   }
 
   const filtrar = (terminoBusqueda) => {
@@ -67,6 +69,13 @@ function VistaBiblioteca({ toggleBiblio }) {
   function navegarSubirArchivo() {
     history.push("/subir");
   }
+
+  //Obtener registros actuales
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = extra.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     //------------------- VISTA BIBLIOTECA --------------------
@@ -322,50 +331,13 @@ function VistaBiblioteca({ toggleBiblio }) {
             </thead>
             <tbody style={{ borderTop: "solid 0.1rem #666" }}>
               {/*RENDERIZAR FILAS DE TABLA ARCHIVO*/}
-              {extra.map((e) => (
-                <FilaVistaBiblioteca archivo={e} />
-              ))}
+              {currentPosts.map((e) => (
+                <FilaVistaBiblioteca archivo={e}/>
+                ))}
+                <Paginacion postsPerPage={postsPerPage} totalPosts={extra.length} paginate={paginate}></Paginacion>
             </tbody>
           </table>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <ul className="pagination">
-              <li className="page-item disabled">
-                <a className="page-link" href="#">
-                  &laquo;
-                </a>
-              </li>
-              <li className="page-item active">
-                <a className="page-link" href="#">
-                  1
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  3
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  4
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  5
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  &raquo;
-                </a>
-              </li>
-            </ul>
-          </div>
+          
         </div>
       </div>
     </div>
