@@ -75,7 +75,7 @@ function Login({ mostrarRegistro }) {
         history.push("/biblioteca");
       } else {
         setMensajeLogin((MensajeLogin) => "");
-        if (respuestaJson.error == 'Usuario inhabilitado.') {
+        if (respuestaJson.error === 'Usuario inhabilitado.') {
           setMensajeError((MensajeError) => "Esta cuenta ha sido inhabilitada");
         }
         else{
@@ -233,10 +233,10 @@ function Login({ mostrarRegistro }) {
             <style>
               {
                 "\
-                      h6:hover{\
-                        text-decoration: solid underline 2px\
-                      }\
-                    "
+                  h6:hover{\
+                  text-decoration: solid underline 2px\
+                  }\
+                "
               }
             </style>
             <a

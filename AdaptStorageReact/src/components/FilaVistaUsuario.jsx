@@ -50,7 +50,7 @@ function FilaVistaUsuario({ usuario, setDetalle }) {
       </style>
 
       <tr 
-      class="archivo" 
+      className="archivo" 
       style={{ borderBottom: "solid 0.05rem #bbb" }}
       onClick={toggleDetalle}
       >

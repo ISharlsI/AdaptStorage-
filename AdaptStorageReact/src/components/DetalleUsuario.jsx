@@ -31,7 +31,7 @@ const DetalleUsuario = ({ usuario, resetDetalle, refreshTablas }) => {
 
   function toggleEstado() {
     setCambioInput(true);
-    if (Estado == "habilitado") {
+    if (Estado === "habilitado") {
       setEstado("inhabilitado");
     } else {
       setEstado("habilitado");
@@ -142,7 +142,7 @@ const DetalleUsuario = ({ usuario, resetDetalle, refreshTablas }) => {
             xmlns="http://www.w3.org/2000/svg"
             width="20"
             fill="currentColor"
-            class="bi bi-x-lg"
+            className="bi bi-x-lg"
             viewBox="0 0 16 16"
           >
             <path
@@ -252,14 +252,14 @@ const DetalleUsuario = ({ usuario, resetDetalle, refreshTablas }) => {
             </div>
           </div>
 
-          {Estado == "habilitado" ? (
+          {Estado === "habilitado" ? (
             <div className="form-group row">
               <label for="email" className="col-sm-2 col-form-label">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   fill="currentColor"
-                  class="bi bi-check-circle"
+                  className="bi bi-check-circle"
                   viewBox="0 0 16 16"
                 >
                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -287,7 +287,7 @@ const DetalleUsuario = ({ usuario, resetDetalle, refreshTablas }) => {
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   fill="currentColor"
-                  class="bi bi-x-circle"
+                  className="bi bi-x-circle"
                   viewBox="0 0 16 16"
                 >
                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />

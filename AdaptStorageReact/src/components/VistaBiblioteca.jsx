@@ -32,6 +32,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
     fecha: "",
     name: "",
     nivel: "",
+    id:""
   });
 
   useEffect(() => {
@@ -55,15 +56,17 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
     setMostrarDropdownOrdenar(!MostrarDropdownOrdenar);
   }
 
+  function toggleDetalle(file){
+    setDetalle(file);
+    setMostrarDropdownOrdenar(false);
+  }
+
   function cambiarOrdenar(event) {
     setOrdenar(event.target.id);
     toggleDropdownOrdenar();
-
-    if (Busqueda !== "") {
-      setTimeout(function () {
-        filtrar(Busqueda);
-      }, 100);
-    }
+    setTimeout(function () {
+      filtrar(Busqueda);
+    }, 100);
   }
 
   function toggleSentidoOrdenar() {
@@ -96,12 +99,14 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
 
   function resetDetalle() {
     setDetalle({
-      nombre: "",
-      correo: "",
+      titulo: "",
+      tipo: "",
+      tamanio: "",
+      fecha: "",
+      name: "",
       nivel: "",
-      id: "",
-      estado: "",
-    });
+      id:""
+  });
   }
 
   const actualizarBusqueda = (valor) => {
@@ -254,7 +259,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
                   xmlns="http://www.w3.org/2000/svg"
                   height="1.2rem"
                   fill="currentColor"
-                  class="bi bi-person"
+                  className="bi bi-person"
                   viewBox="0 0 16 16"
                 >
                   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
@@ -285,7 +290,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
                 viewBox="0 0 16 16"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
                 />
               </svg>
@@ -298,7 +303,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
                 viewBox="0 0 16 16"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
                 />
               </svg>
@@ -401,10 +406,10 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
               {/*RENDERIZAR FILAS DE TABLA ARCHIVO*/}
               {Busqueda == ""
                 ? currentPosts.map((e) => (
-                    <FilaVistaBiblioteca archivo={e} setDetalle={setDetalle} />
+                    <FilaVistaBiblioteca key={e.id} archivo={e} toggleDetalle={toggleDetalle} />
                   ))
                 : extra.map((e) => (
-                    <FilaVistaBiblioteca archivo={e} setDetalle={setDetalle} />
+                    <FilaVistaBiblioteca key={e.id} archivo={e} toggleDetalle={toggleDetalle} />
                   ))}
             </tbody>
           </table>

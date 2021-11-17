@@ -109,7 +109,7 @@ function SubirArchivo() {
           xmlns="http://www.w3.org/2000/svg"
           height="1.2rem"
           fill="currentColor"
-          class="bi bi-arrow-left"
+          className="bi bi-arrow-left"
           viewBox="0 0 16 16"
         >
           <path

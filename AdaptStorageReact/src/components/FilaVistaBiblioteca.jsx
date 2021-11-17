@@ -1,26 +1,29 @@
 import React, { Fragment, useState } from "react";
 
-function FilaVistaBiblioteca({ archivo, setDetalle }) {
+function FilaVistaBiblioteca({ archivo, toggleDetalle }) {
   const [Titulo, setTitulo] = useState(archivo.titulo);
   const [Tipo, setTipoo] = useState(archivo.tipo);
   const [Tamanio, setTamanio] = useState(archivo.tamanio);
   const [Fecha, setFecha] = useState(archivo.fecha);
   const [Name, setName] = useState(archivo.name);
   const [Nivel, setNivel] = useState(archivo.nivel);
+  const [Id, setId] = useState(archivo.id);
   
   const [SesionUsuario, setSesionUsuario] = useState(
     JSON.parse(localStorage.getItem("sesion_usuario")) || ""
   );
 
-  function toggleDetalle(){
-    setDetalle({
+  function llamarDetalle( ){
+  let file = {
       titulo: Titulo,
       tipo: Tipo,
       tamanio: Tamanio,
       fecha: Fecha,
       name: Name,
-      nivel: Nivel
-    });
+      nivel: Nivel,
+      id: Id
+    }
+    toggleDetalle(file);
   }
 
   const fecha = new Date(archivo.fecha);
@@ -56,7 +59,7 @@ function FilaVistaBiblioteca({ archivo, setDetalle }) {
       </style>
       {archivo.nivel > SesionUsuario.idTipoUsuario ? <tr></tr> : (
         <Fragment>
-          <tr className="archivo" onClick={toggleDetalle}>
+          <tr className="archivo" onClick={llamarDetalle}>
             <th
               scope="row"
               style={{
@@ -65,7 +68,6 @@ function FilaVistaBiblioteca({ archivo, setDetalle }) {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               }}
-              key={archivo.id}
             >
               {archivo.titulo}
             </th>
@@ -121,7 +123,7 @@ function FilaVistaBiblioteca({ archivo, setDetalle }) {
                 }
               </style>
               <button className='mas'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" className="bi bi-three-dots" viewBox="0 0 16 16">
                   <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                 </svg>
               </button>
