@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { saveAs } from "file-saver";
 
 const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
   let history = useHistory();
+  const URL_LOGIN = "http://localhost/AdaptStorage/uploads/";
 
   const [Titulo, setTitulo] = useState(archivo.titulo);
   const [Tipo, setTipoo] = useState(archivo.tipo);
@@ -13,7 +15,10 @@ const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
   const [Id, setId] = useState(archivo.id);
 
   function descargarArchivo() {
-    console.log('DESCARGAR ARCHIVO');
+    saveAs(
+      URL_LOGIN + archivo.titulo,
+      archivo.titulo + "." + archivo.tipo
+    );
   }
 
   function modificarArchivo() {
