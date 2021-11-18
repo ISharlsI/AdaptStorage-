@@ -18,7 +18,7 @@ function Navbar({actualizarBusqueda}) {
 
   return (
     <div>
-      <nav className="navbar-expand-lg bg-primary" style={{ display: "flex" }}>
+      <nav className="navbar-expand-lg bg-primary" style={{ display: "flex", boxShadow:'0px 0px 4px #999' }}>
         <div
           style={{
             justifyContent: "left",

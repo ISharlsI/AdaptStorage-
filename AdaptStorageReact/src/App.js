@@ -6,6 +6,7 @@ import Registro from "./components/Registro";
 import SubirArchivo from "./pages/SubirArchivo";
 import BibliotecaUsuario from "./pages/BibliotecaUsuario";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AnalizarArchivo from "./pages/AnalizarArchivo";
 
 function App() {
   const [visible, setVisible] = useState(true);
@@ -44,6 +45,10 @@ function App() {
           <Route exact path="/biblioteca">
             {/* -----------------------BIBLIOTECA USUARIO--------------------- */}
             <BibliotecaUsuario />
+          </Route>
+          <Route exact path="/analizar">
+            {/* -----------------------BIBLIOTECA USUARIO--------------------- */}
+            <AnalizarArchivo />
           </Route>
           <Route exact path="/subir">
             {/* -----------------------Subir archivo--------------------- */}

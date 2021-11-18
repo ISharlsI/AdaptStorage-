@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../img/Logo_AdaptStorage_Negro.png";
+import logo from "../img/Logo_AdaptStorage_Blanco.png";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
@@ -55,7 +55,7 @@ function SubirArchivo() {
     <div>
       <nav
         className="navbar navbar-expand-lg navbar-dark bg-primary"
-        style={{ display: "flex" }}
+        style={{ display: "flex", boxShadow:'0px 1px 4px #999' }}
       >
         <div
           className="container-fluid"
@@ -64,7 +64,7 @@ function SubirArchivo() {
             history.push("/biblioteca");
           }}
         >
-          <img src={logo} alt="" style={{ height: "100px" }} />
+          <img src={logo} alt="" style={{ height: "4rem" }} />
         </div>
       </nav>
 
