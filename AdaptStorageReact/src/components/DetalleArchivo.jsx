@@ -4,7 +4,7 @@ import { saveAs } from "file-saver";
 
 const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
   let history = useHistory();
-  const URL_LOGIN = "http://localhost/AdaptStorage/uploads/";
+  const URL_DESCARGA = "http://localhost/AdaptStorage/uploads/";
 
   const [Titulo, setTitulo] = useState(archivo.titulo);
   const [Tipo, setTipoo] = useState(archivo.tipo);
@@ -16,7 +16,7 @@ const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
 
   function descargarArchivo() {
     saveAs(
-      URL_LOGIN + archivo.titulo,
+      URL_DESCARGA + archivo.titulo,
       archivo.titulo + "." + archivo.tipo
     );
   }
