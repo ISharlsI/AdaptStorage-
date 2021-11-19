@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { saveAs } from "file-saver";
+import FileSaver, { saveAs } from "file-saver";
 
 const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
   let history = useHistory();
@@ -15,19 +16,31 @@ const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
   const [Id, setId] = useState(archivo.id);
 
   function descargarArchivo() {
-    saveAs(
-      URL_DESCARGA + archivo.titulo,
-      archivo.titulo + "." + archivo.tipo
-    );
+    axios({
+      url:(URL_DESCARGA + Titulo + '.' + Tipo),
+      method:'GET',
+      responseType:'blob',
+    })
+    .then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', (Titulo + '.' + Tipo)); //or any other extension
+      document.body.appendChild(link);
+      link.click();
+    })
   }
 
   function modificarArchivo() {
-    console.log('MODIFICAR ARCHIVO');
+    console.log("MODIFICAR ARCHIVO");
   }
 
   function inhabilitarArchivo() {
-    console.log('INHABILITAR ARCHIVO');
+    console.log("INHABILITAR ARCHIVO");
   }
+
+  const fecha = new Date(Fecha);
+  fecha.setDate(fecha.getDate() + 1);
 
   return (
     <div
@@ -43,106 +56,187 @@ const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
         paddingTop: "1rem",
       }}
     >
+      <style>
+      {
+        "\
+        button.archivo{\
+          background: white;\
+          color: #444;\
+          padding: 0px;\
+          transition: 0.2s;\
+        }\
+        button.archivo:hover{\
+          background: #444;\
+          color: white;\
+        }\
+        button.archivo:active{\
+          color: #444;\
+          background: white;\
+          transition: 0.1s;\
+        }\
+        h6{\
+          font-weight: 400;\
+          font-size: 0.8rem;\
+          color: #444;\
+        }\
+        "
+      }
+      </style>
       <div
         className="card mb-3"
-        style={{ background: "#D0DFF2", width: "20rem" }}
+        style={{
+          width: "32rem",
+          background: "#D0DFF2",
+          display: "grid",
+          gridTemplateColumns: "3",
+          gridTemplateRows: "4",
+        }}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          fill="currentColor"
-          className="bi bi-file-earmark"
-          viewBox="0 0 16 16"
-          style={{ marginLeft: 15, marginTop: 15 }}
-        >
-          <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
-        </svg>
-
-        <button
-          className="btn"
-          onClick={resetDetalle}
+        <div
           style={{
-            position: "absolute",
-            right: 0,
-            marginRight: 15,
-            marginTop: 15,
-            padding: 10,
+            width: "100%",
+            height: "100%",
+            gridColumn: "1/3",
+            gridRow: "1",
           }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
+            width="30"
             fill="currentColor"
-            className="bi bi-x-lg"
+            className="bi bi-file-earmark"
             viewBox="0 0 16 16"
+            style={{ marginLeft: 15, marginTop: 15 }}
           >
-            <path
-              fill-rule="evenodd"
-              d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"
-            />
-            <path
-              fill-rule="evenodd"
-              d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"
-            />
+            <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
           </svg>
-        </button>
 
-        <h4 style={{ textAlign: "center", marginTop: "10px" }}>Archivo</h4>
-        <div
-          className="card-body"
-          style={{
-            marginLeft: "1.6rem",
-            marginRight: "1.6rem",
-          }}
-        >
-          <span style={{ fontWeight: 600 }}>Nombre:</span>
-          <br />
-          <span style={{ fontWeight: 400 }}>{Titulo}</span>
-          <br />
-          <br />
+          <button
+            className="btn"
+            onClick={resetDetalle}
+            style={{
+              position: "absolute",
+              right: 0,
+              marginRight: 15,
+              marginTop: 15,
+              padding: 10,
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              fill="currentColor"
+              className="bi bi-x-lg"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"
+              />
+            </svg>
+          </button>
 
-          <span style={{ fontWeight: 600 }}>Tipo de archivo:</span>
-          <br />
-          <span style={{ fontWeight: 400 }}>{Tipo}</span>
-          <br />
-          <br />
-
-          <span style={{ fontWeight: 600 }}>Fecha de Carga:</span>
-          <br />
-          <span style={{ fontWeight: 400 }}>{Fecha}</span>
-          <br />
-          <br />
-
-          <span style={{ fontWeight: 600 }}>Tamaño:</span>
-          <br />
-          <span style={{ fontWeight: 400 }}>{Tamanio}</span>
-          <br />
-          <br />
-
-          <span style={{ fontWeight: 600 }}>Propietario:</span>
-          <br />
-          <span style={{ fontWeight: 400 }}>{Name}</span>
-          <br />
-          <br />
-
-          <span style={{ fontWeight: 600 }}>Nivel de acceso:</span>
-          <br />
-          <span style={{ fontWeight: 400 }}>{Nivel}</span>
+          <h4 style={{ textAlign: "center" }}>Archivo</h4>
         </div>
         <div
           style={{
             display: "flex",
+            gridColumn: "1/2",
+            gridRow: "2",
             justifyContent: "center",
-            width: "100%",
-            marginBottom: "2rem",
+            alignItems: "center",
+            margin:'1rem',
+            paddingLeft:'2rem'
+          }}
+        >
+          <img
+            src={
+              process.env.PUBLIC_URL + "/icons/" + Tipo.toUpperCase() + ".png"
+            }
+            alt="ico"
+          />
+        </div>
+
+        <div
+          style={{
+            gridColumn: "2/2",
+            gridRow: "2",
+            margin:'1rem',
+            paddingLeft:'2rem'
+          }}
+        >
+          <h6>Nombre</h6>
+          <p>{Titulo}</p>
+          <h6>Tamaño</h6>
+          <p>
+            { 
+            Tamanio < 1048576
+            ? Tamanio < 1024
+            ? Tamanio + " Bytes"
+            : (Tamanio / 1024).toFixed(0) + " KB"
+            : (Tamanio / 1048576).toFixed(0) + " MB"
+            }
+          </p>
+        </div>
+        <div
+          style={{
+            gridColumn: "1/3",
+            gridRow: "3",
+            display: "grid",
+            gridTemplateColumns: "2",
+            gridTemplateRows: "1",
+          }}
+        >
+          <div
+            style={{
+              margin:'1rem',
+              gridColumn: "1/2",
+              gridRow: "1",
+              paddingLeft:'2rem'
+            }}
+          >
+            <h6>Tipo de Archivo</h6>
+            <p>{Tipo.toUpperCase()}</p>
+            <h6>Fecha de Carga</h6>
+            <p>{new Intl.DateTimeFormat("es-MX", { dateStyle: "medium" }).format(
+                fecha
+              )}</p>
+          </div>
+          <div
+            style={{
+              margin:'1rem',
+              gridColumn: "2/2",
+              gridRow: "1",
+              paddingLeft:'2rem'
+            }}
+          >
+            <h6>Propietario</h6>
+            <p>{Name}</p>
+            <h6>Nivel de Seguridad</h6>
+            <p>{"Nivel " + Nivel}</p>
+          </div>
+        </div>
+        <div
+          style={{
+            gridColumn: "1/3",
+            gridRow: "4",
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "1rem",
           }}
         >
           {Tipo === "docx" || Tipo === "txt" || Tipo === "pdf" ? (
             <button
-              onClick={() => {history.push("/analizar", {archivo: archivo});}}
-              className="btn btn btn-light"
+              onClick={() => {
+                history.push("/analizar", { archivo: archivo });
+              }}
+              className="btn btn btn-light archivo"
               style={{
-                margin: "0.4rem",
+                margin: "0.6rem",
                 fontWeight: 400,
                 padding: 6,
               }}
@@ -151,7 +245,7 @@ const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 fill="currentColor"
-                class="bi bi-clipboard-data"
+                className="bi bi-clipboard-data"
                 viewBox="0 0 16 16"
               >
                 <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
@@ -164,9 +258,9 @@ const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
           )}
           <button
             onClick={descargarArchivo}
-            className="btn btn btn-light"
+            className="btn btn btn-light archivo"
             style={{
-              margin: "0.4rem",
+              margin: "0.6rem",
               fontWeight: 400,
               padding: 6,
             }}
@@ -184,9 +278,9 @@ const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
           </button>
           <button
             onClick={modificarArchivo}
-            className="btn btn btn-light"
+            className="btn btn btn-light archivo"
             style={{
-              margin: "0.4rem",
+              margin: "0.6rem",
               fontWeight: 400,
               padding: 6,
             }}
@@ -203,9 +297,9 @@ const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
           </button>
           <button
             onClick={inhabilitarArchivo}
-            className="btn btn btn-light"
+            className="btn btn btn-light archivo"
             style={{
-              margin: "0.4rem",
+              margin: "0.6rem",
               fontWeight: 400,
               padding: 6,
             }}
