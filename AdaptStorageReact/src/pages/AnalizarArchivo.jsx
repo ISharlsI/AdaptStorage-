@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useHistory } from "react-router-dom";
 import logo from "../img/Logo_AdaptStorage_Blanco.png";
+import axios from "axios";
 
 
 function AnalizarArchivo() {
@@ -8,10 +9,23 @@ function AnalizarArchivo() {
     let location = useLocation();
     const [Archivo, setArchivo] = useState(location.state ? (location.state.archivo) : '');
     const [Contenido, setContenido] = useState('AQUÍ VA EL CONTENIDO MAMAWEBO');
-    
+    const [extra, setExtra] = useState([]);
     if (Archivo === '') {
         history.push("/");
     }
+    //mostrar contenido
+    useEffect(() => {
+      obtenerArchivos3();
+    }, []);
+    
+  async function obtenerArchivos3() {
+    const res = await axios.get(
+      process.env.REACT_APP_SERVER_URL + "mostrarDatos3.php?id=" + Archivo.id + ""
+    );
+    console.log("mostrarDatos3.php?id=" + Archivo.id + "");
+    console.log(res.data);
+    setExtra(res.data);
+  }
 
     return (
         <div>
@@ -70,7 +84,7 @@ function AnalizarArchivo() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="1.2rem"
-          fill="currentColor"
+          fill-rull="currentColor"
           className="bi bi-arrow-left"
           viewBox="0 0 16 16"
         >
@@ -87,6 +101,8 @@ function AnalizarArchivo() {
             <h6>{Archivo.name}</h6>
             <h6>{Archivo.id}</h6>
             <h6>{Contenido}</h6>
+           
+            
         </div>
     )
 }

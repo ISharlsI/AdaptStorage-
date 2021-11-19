@@ -3,6 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const URL_REGISTRO = process.env.REACT_APP_SERVER_URL + "modificarArchivo.php";
+const URL_REGISTRO2 = process.env.REACT_APP_SERVER_URL + "eliminar.php";
 
 const DetalleArchivo = ({ archivo, refreshTablas }) => {
   let history = useHistory();
@@ -109,9 +110,28 @@ const DetalleArchivo = ({ archivo, refreshTablas }) => {
   function mostrarEditar() {
     setToggleEditar(!ToggleEditar);
   }
+  //eliminar
+  const enviarData2 = async (url2, data2) => {
+    const resp2 = await fetch(url2, {
+      method: "POST",
+      body: JSON.stringify(data2),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  
+    const json2 = await resp2.json();
+    console.log(json2);
+  
+    return json2;
+  };
 
-  const eliminarArchivo = () => {
+  const eliminarArchivo = async () => {
     console.log(Id);
+    const data2 = {
+      Id,
+    };
+    const respuestaJson = await enviarData2(URL_REGISTRO2, data2);
     //Actualizar Tabla
     history.push("/");
   };

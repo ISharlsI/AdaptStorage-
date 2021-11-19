@@ -42,13 +42,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
 
   async function obtenerArchivos() {
     const res = await axios.get(
-      process.env.REACT_APP_SERVER_URL +
-        "mostrarDatos.php?orden=" +
-        SentidoOrdenar +
-        "&tipo=" +
-        Ordenar +
-        "&nivel=" +
-        SesionUsuario.idTipoUsuario +
+      process.env.REACT_APP_SERVER_URL + "mostrarDatos.php?orden=" + SentidoOrdenar + "&tipo=" + Ordenar + "&nivel=" + SesionUsuario.idTipoUsuario +
         ""
     );
     console.log(res.data);
