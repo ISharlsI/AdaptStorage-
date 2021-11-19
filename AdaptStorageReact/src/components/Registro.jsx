@@ -63,7 +63,7 @@ function Registro({ mostrarLogin }) {
 
       const correos_registrados = extra2.map((usuario) => usuario.usuario);
 
-      if (!(correos_registrados.includes(Correo))) {
+      if (!correos_registrados.includes(Correo)) {
         //El correo no está registrado
         console.log(data);
         const respuestaJson = await enviarData(URL_REGISTRO, data);
@@ -81,8 +81,7 @@ function Registro({ mostrarLogin }) {
         } else {
           setMensajeError("Al menos un dato es incorrecto");
         }
-      }
-      else{
+      } else {
         //El correo ya está registrado
         setMensajeError("Ya existe una cuenta registrada con este correo.");
       }
@@ -138,6 +137,30 @@ function Registro({ mostrarLogin }) {
             <h4 style={{ textAlign: "center", marginTop: "10px" }}>Registro</h4>
             <div className="card-body">
               {/*FORMULARIO DE REGISTRO DE USUARIO*/}
+              <style>
+                {
+                  "\
+                button.login{\
+                    font-weight: 400;\
+                    border-radius: 5px;\
+                    background: #2ECC71 ;\
+                    box-shadow: none;\
+                    color: white;\
+                    border: solid #2ECC71  2px;\
+                }\
+                \
+                button.login:hover{\
+                  font-weight: 500;\
+                    background: white;\
+                    color: #2ECC71 ;\
+                    border: solid #2ECC71  2px;\
+                }\
+                button.login:enabled{\
+                  border: solid #2ECC71  2px;\
+                }\
+                "
+                }
+              </style>
 
               <h6
                 style={{
@@ -247,12 +270,7 @@ function Registro({ mostrarLogin }) {
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <button
                   onClick={handleRegistro}
-                  className="btn"
-                  style={{
-                    background: "#5FF27A",
-                    color: "white",
-                    fontWeight: 400,
-                  }}
+                  className="btn login"
                 >
                   Registrar
                 </button>

@@ -7,6 +7,7 @@ function FilaVistaBiblioteca({ archivo, toggleDetalle }) {
   const [Fecha, setFecha] = useState(archivo.fecha);
   const [Name, setName] = useState(archivo.name);
   const [Nivel, setNivel] = useState(archivo.nivel);
+  const [Ruta, setRuta] = useState(archivo.ruta);
   const [Id, setId] = useState(archivo.id);
   
   const [SesionUsuario, setSesionUsuario] = useState(
@@ -21,7 +22,8 @@ function FilaVistaBiblioteca({ archivo, toggleDetalle }) {
       fecha: Fecha,
       name: Name,
       nivel: Nivel,
-      id: Id
+      id: Id,
+      ruta: Ruta
     }
     toggleDetalle(file);
   }
@@ -57,8 +59,6 @@ function FilaVistaBiblioteca({ archivo, toggleDetalle }) {
           "
         }
       </style>
-      {archivo.nivel > SesionUsuario.idTipoUsuario ? <tr></tr> : (
-        <Fragment>
           <tr className="archivo" onClick={llamarDetalle}>
             <th
               scope="row"
@@ -129,8 +129,6 @@ function FilaVistaBiblioteca({ archivo, toggleDetalle }) {
               </button>
             </td>
           </tr>
-        </Fragment>
-      )}
     </Fragment>
   );
 }

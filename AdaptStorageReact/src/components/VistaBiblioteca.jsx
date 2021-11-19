@@ -32,7 +32,8 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
     fecha: "",
     name: "",
     nivel: "",
-    id:""
+    id: "",
+    ruta: ""
   });
 
   useEffect(() => {
@@ -41,10 +42,13 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
 
   async function obtenerArchivos() {
     const res = await axios.get(
-      process.env.REACT_APP_SERVER_URL + "mostrarDatos.php?orden=" +
+      process.env.REACT_APP_SERVER_URL +
+        "mostrarDatos.php?orden=" +
         SentidoOrdenar +
         "&tipo=" +
         Ordenar +
+        "&nivel=" +
+        SesionUsuario.idTipoUsuario +
         ""
     );
     console.log(res.data);
@@ -56,7 +60,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
     setMostrarDropdownOrdenar(!MostrarDropdownOrdenar);
   }
 
-  function toggleDetalle(file){
+  function toggleDetalle(file) {
     setDetalle(file);
     setMostrarDropdownOrdenar(false);
   }
@@ -105,8 +109,9 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
       fecha: "",
       name: "",
       nivel: "",
-      id:""
-  });
+      id: "",
+      ruta: ""
+    });
   }
 
   const actualizarBusqueda = (valor) => {
@@ -406,10 +411,18 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
               {/*RENDERIZAR FILAS DE TABLA ARCHIVO*/}
               {Busqueda == ""
                 ? currentPosts.map((e) => (
-                    <FilaVistaBiblioteca key={e.id} archivo={e} toggleDetalle={toggleDetalle} />
+                    <FilaVistaBiblioteca
+                      key={e.id}
+                      archivo={e}
+                      toggleDetalle={toggleDetalle}
+                    />
                   ))
                 : extra.map((e) => (
-                    <FilaVistaBiblioteca key={e.id} archivo={e} toggleDetalle={toggleDetalle} />
+                    <FilaVistaBiblioteca
+                      key={e.id}
+                      archivo={e}
+                      toggleDetalle={toggleDetalle}
+                    />
                   ))}
             </tbody>
           </table>

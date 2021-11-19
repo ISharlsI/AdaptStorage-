@@ -33,6 +33,11 @@ function Paginacion({
             background:#2196f3;\
             transition:0s;\
           }\
+          a{\
+            -webkit-user-select: none;\
+            -moz-user-select: none;\
+            -ms-user-select: none;\
+          }\
           "
         }
       </style>

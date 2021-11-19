@@ -273,7 +273,8 @@ const DetalleUsuario = ({ usuario, resetDetalle, refreshTablas }) => {
                   style={{
                     width:'8rem',
                     marginTop: "1rem",
-                    padding:6
+                    padding:6,
+                    textTransform:'capitalize'
                   }}
                 >
                   Habilitado
@@ -301,7 +302,8 @@ const DetalleUsuario = ({ usuario, resetDetalle, refreshTablas }) => {
                   style={{
                     width:'8rem',
                     marginTop: "1rem",
-                    padding:6
+                    padding:6,
+                    textTransform:'capitalize'
                   }}
                 >
                   Inhabilitado
@@ -339,6 +341,7 @@ const DetalleUsuario = ({ usuario, resetDetalle, refreshTablas }) => {
                   color: "white",
                   fontWeight: 400,
                   padding: 10,
+                  textTransform:'capitalize'
                 }}
               >
                 Guardar Cambios

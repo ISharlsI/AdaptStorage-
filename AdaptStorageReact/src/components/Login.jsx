@@ -27,10 +27,14 @@ function Login({ mostrarRegistro }) {
     history.push("/biblioteca");
   }
 
-  const [Usuario, setUsuario] = useState(localStorage.getItem("recien_registrado") || "" );
+  const [Usuario, setUsuario] = useState(
+    localStorage.getItem("recien_registrado") || ""
+  );
   const [Clave, setClave] = useState("");
   const [MensajeError, setMensajeError] = useState("");
-  const [MensajeLogin, setMensajeLogin] = useState(localStorage.getItem("mensaje_recien_registrado") || "" );
+  const [MensajeLogin, setMensajeLogin] = useState(
+    localStorage.getItem("mensaje_recien_registrado") || ""
+  );
 
   const validar = () => {
     if (Usuario === "" || Clave === "") {
@@ -75,11 +79,10 @@ function Login({ mostrarRegistro }) {
         history.push("/biblioteca");
       } else {
         setMensajeLogin((MensajeLogin) => "");
-        if (respuestaJson.error === 'Usuario inhabilitado.') {
+        if (respuestaJson.error === "Usuario inhabilitado.") {
           setMensajeError((MensajeError) => "Esta cuenta ha sido inhabilitada");
-        }
-        else{
-        setMensajeError((MensajeError) => "Al menos un dato es incorrecto");
+        } else {
+          setMensajeError((MensajeError) => "Al menos un dato es incorrecto");
         }
       }
     } else {
@@ -97,6 +100,30 @@ function Login({ mostrarRegistro }) {
       }}
     >
       <div className="card mb-3" style={{ background: "#D0DFF2" }}>
+        <style>
+          {
+            "\
+                button.login{\
+                    font-weight: 400;\
+                    border-radius: 5px;\
+                    background: #2ECC71 ;\
+                    box-shadow: none;\
+                    color: white;\
+                    border: solid #2ECC71  2px;\
+                }\
+                \
+                button.login:hover{\
+                  font-weight: 500;\
+                    background: white;\
+                    color: #2ECC71 ;\
+                    border: solid #2ECC71  2px;\
+                }\
+                button.login:enabled{\
+                  border: solid #2ECC71  2px;\
+                }\
+                "
+          }
+        </style>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="40"
@@ -214,16 +241,7 @@ function Login({ mostrarRegistro }) {
 
           <br />
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <button
-              onClick={handleLogin}
-              type="submit"
-              className="btn"
-              style={{
-                background: "#5FF27A",
-                color: "white",
-                fontWeight: 400,
-              }}
-            >
+            <button onClick={handleLogin} type="submit" className="btn login">
               Ingresar
             </button>
           </div>
