@@ -1,4 +1,4 @@
-import logo from "./img/Logo_AdaptStorage_Negro.png";
+import logo from "./img/Logo_AdaptStorage_Blanco.png";
 import "./App.css";
 import React, { useState } from "react";
 import Login from "./components/Login";

@@ -7,11 +7,11 @@ function AnalizarArchivo() {
     let history = useHistory();
     let location = useLocation();
     const [Archivo, setArchivo] = useState(location.state ? (location.state.archivo) : '');
+    const [Contenido, setContenido] = useState('AQUÍ VA EL CONTENIDO MAMAWEBO');
     
     if (Archivo === '') {
         history.push("/");
     }
-    
 
     return (
         <div>
@@ -86,6 +86,7 @@ function AnalizarArchivo() {
             <h6>{Archivo.tamanio}</h6>
             <h6>{Archivo.name}</h6>
             <h6>{Archivo.id}</h6>
+            <h6>{Contenido}</h6>
         </div>
     )
 }

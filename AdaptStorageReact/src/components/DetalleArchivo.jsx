@@ -154,7 +154,7 @@ const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
         >
           <img
             src={
-              process.env.PUBLIC_URL + "/icons/" + Tipo.toUpperCase() + ".png"
+              process.env.PUBLIC_URL + "/ico/" + Tipo.toUpperCase() + ".png"
             }
             alt="ico"
           />

@@ -131,7 +131,38 @@ function SubirArchivo() {
             marginTop: "100px",
           }}
         >
-          <input onChange={onChange} type="file" id="archivo" />
+          <style>
+            {
+              "\
+                button.subir{\
+                    border-radius: 5px;\
+                    background: #2196f3;\
+                    box-shadow: none;\
+                    color: white;\
+                    border: solid #2196f3 2px;\
+                }\
+                \
+                button.subir:hover{\
+                    background: white;\
+                    color: #2196f3;\
+                    border: solid #2196f3 2px;\
+                }\
+                button.subir:enabled{\
+                  border: solid #2196f3 2px;\
+                }\
+                \
+                "
+            }
+          </style>
+          <button
+            className="btn btn-primary subir"
+            style={{
+              textTransform: "capitalize",
+              fontWeight: "300",
+            }}
+          >
+            <input className='form-control-file' onChange={onChange} type="file" id="archivo"/>
+          </button>         
         </div>
 
         {/* Mensaje Error*/}
