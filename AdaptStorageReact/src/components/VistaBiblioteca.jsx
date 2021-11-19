@@ -41,7 +41,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
 
   async function obtenerArchivos() {
     const res = await axios.get(
-      "http://localhost/AdaptStorage/mostrarDatos.php?orden=" +
+      process.env.REACT_APP_SERVER_URL + "mostrarDatos.php?orden=" +
         SentidoOrdenar +
         "&tipo=" +
         Ordenar +

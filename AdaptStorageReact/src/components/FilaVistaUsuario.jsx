@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import DetalleUsuario from "./DetalleUsuario";
 
-const URL_REGISTRO = "http://localhost/AdaptStorage/modificar.php";
+const URL_REGISTRO = process.env.REACT_APP_SERVER_URL + "modificar.php";
 
 function FilaVistaUsuario({ usuario, setDetalle }) {
   const [Nombre, setNombre] = useState(usuario.nombre);

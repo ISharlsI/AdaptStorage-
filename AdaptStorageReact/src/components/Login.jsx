@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const URL_LOGIN = "http://localhost/AdaptStorage/login.php";
+const URL_LOGIN = process.env.REACT_APP_SERVER_URL + "login.php";
 
 const enviarData = async (url, data) => {
   const resp = await fetch(url, {

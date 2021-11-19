@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const URL_REGISTRO = "http://localhost/AdaptStorage/modificar.php";
+const URL_REGISTRO = process.env.REACT_APP_SERVER_URL + "modificar.php";
 
 const DetalleUsuario = ({ usuario, resetDetalle, refreshTablas }) => {
   const [Nombre, setNombre] = useState(usuario.nombre);

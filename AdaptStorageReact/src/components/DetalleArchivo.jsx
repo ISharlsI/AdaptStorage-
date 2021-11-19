@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import FileSaver, { saveAs } from "file-saver";
 
 const DetalleArchivo = ({ archivo, refreshTablas, resetDetalle }) => {
   let history = useHistory();
-  const URL_DESCARGA = "http://localhost/AdaptStorage/uploads/";
+  const URL_DESCARGA = process.env.REACT_APP_SERVER_URL + "uploads/";
 
   const [Titulo, setTitulo] = useState(archivo.titulo);
   const [Tipo, setTipoo] = useState(archivo.tipo);

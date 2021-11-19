@@ -3,7 +3,7 @@ import logo from "../img/Logo_AdaptStorage_Blanco.png";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const UPLOAD_ENDPOINT = "http://localhost/AdaptStorage/subirArchivo.php";
+const UPLOAD_ENDPOINT = process.env.REACT_APP_SERVER_URL + "subirArchivo.php";
 
 function SubirArchivo() {
   let history = useHistory();

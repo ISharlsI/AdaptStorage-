@@ -10,10 +10,10 @@ $conn = conectarDB();
 $tipo=$_GET['tipo'];
 
 if($_GET['orden']=="Desc"){
-  $sql = "SELECT titulo, tipo, tamanio, fecha, namePropietario, nivel_seguridad FROM archivos ORDER BY $tipo DESC";
+  $sql = "SELECT titulo, tipo, tamanio, fecha, namePropietario, nivel_seguridad, id FROM archivos ORDER BY $tipo DESC";
 }
 if($_GET['orden']=="Asc"){
-  $sql = "SELECT titulo, tipo, tamanio, fecha, namePropietario, nivel_seguridad FROM archivos ORDER BY $tipo ASC";
+  $sql = "SELECT titulo, tipo, tamanio, fecha, namePropietario, nivel_seguridad, id FROM archivos ORDER BY $tipo ASC";
 }
 
 
@@ -27,7 +27,8 @@ while($fila = mysqli_fetch_assoc($ejecutar)) {
       "tamanio" => $fila['tamanio'],
       "fecha" => $fila['fecha'],
       "name" => $fila['namePropietario'],
-  	  "nivel" => $fila['nivel_seguridad']); }
+  	  "nivel" => $fila['nivel_seguridad'],
+      "id" => $fila['id']); }
       
 $conn->close();
 $json = json_encode($vector);

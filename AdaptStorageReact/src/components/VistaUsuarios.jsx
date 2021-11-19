@@ -20,7 +20,7 @@ function VistaUsuarios({ toggleBiblio, refreshTablas }) {
 
   async function obtenerArchivos2() {
     const res2 = await axios.get(
-      "http://localhost/AdaptStorage/mostrarDatos2.php"
+      process.env.REACT_APP_SERVER_URL + "mostrarDatos2.php"
     );
     console.log(res2.data);
     setExtra2(res2.data);
