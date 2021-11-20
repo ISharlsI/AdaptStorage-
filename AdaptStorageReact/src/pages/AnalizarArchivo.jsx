@@ -8,8 +8,7 @@ function AnalizarArchivo() {
     let history = useHistory();
     let location = useLocation();
     const [Archivo, setArchivo] = useState(location.state ? (location.state.archivo) : '');
-    const [Contenido, setContenido] = useState('AQUÍ VA EL CONTENIDO MAMAWEBO');
-    const [extra, setExtra] = useState([]);
+    const [Contenido, setContenido] = useState('');
     if (Archivo === '') {
         history.push("/");
     }
@@ -22,9 +21,12 @@ function AnalizarArchivo() {
     const res = await axios.get(
       process.env.REACT_APP_SERVER_URL + "mostrarDatos3.php?id=" + Archivo.id + ""
     );
-    console.log("mostrarDatos3.php?id=" + Archivo.id + "");
-    console.log(res.data);
-    setExtra(res.data);
+    
+    setContenido(res.data[0].contenido);
+    
+    console.log(res.data[0].contenido);
+    console.log('-------------------------------');
+    console.log(Contenido);
   }
 
     return (
@@ -63,7 +65,6 @@ function AnalizarArchivo() {
                 button.subir:enabled{\
                   border: solid #2196f3 2px;\
                 }\
-                \
                 "
             }
           </style>
@@ -100,7 +101,8 @@ function AnalizarArchivo() {
             <h6>{Archivo.tamanio}</h6>
             <h6>{Archivo.name}</h6>
             <h6>{Archivo.id}</h6>
-            <h6>{Contenido}</h6>
+            <h6 style={{whiteSpace:'pre-line'}}>{Contenido}</h6>
+            
            
             
         </div>
