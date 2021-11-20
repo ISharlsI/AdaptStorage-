@@ -85,7 +85,7 @@ function AnalizarArchivo() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="1.2rem"
-          fill-rull="currentColor"
+          fill="currentColor"
           className="bi bi-arrow-left"
           viewBox="0 0 16 16"
         >
