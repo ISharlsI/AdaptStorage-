@@ -69,7 +69,7 @@ function Paginacion({
         {pageNumbers.map((number) => (
           <li
             key={number}
-            className={currentPage == number ? "page-item active" : "page-item"}
+            className={currentPage === number ? "page-item active" : "page-item"}
             style={{ cursor: "pointer" }}
           >
             <a onClick={() => paginate(number)} className="page-link">

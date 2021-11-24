@@ -257,7 +257,7 @@ function Login({ mostrarRegistro }) {
                 "
               }
             </style>
-            <a
+            <span
               onClick={mostrarRegistro}
               style={{ textDecoration: "none", cursor: "pointer" }}
             >
@@ -271,7 +271,7 @@ function Login({ mostrarRegistro }) {
               >
                 ¿No tienes cuenta? <b>Registrate.</b>
               </h6>
-            </a>
+            </span>
           </div>
         </div>
       </div>

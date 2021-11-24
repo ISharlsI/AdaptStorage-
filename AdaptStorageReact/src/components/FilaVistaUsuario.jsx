@@ -83,7 +83,7 @@ function FilaVistaUsuario({ usuario, setDetalle }) {
           {Correo}
         </td>
         <td
-          style={Estado == 'habilitado' ? {
+          style={Estado === 'habilitado' ? {
             fontWeight: 400,
             whiteSpace: "nowrap",
             overflow: "hidden",

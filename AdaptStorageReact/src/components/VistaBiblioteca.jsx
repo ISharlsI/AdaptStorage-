@@ -241,7 +241,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
           </button>
           */}
 
-          {SesionUsuario.idTipoUsuario == 4 ? (
+          {SesionUsuario.idTipoUsuario === 4 ? (
             //SI EL USUARIO ES ADMIN, MOSTRAR BOTÓN VISTA CUENTAS USUARIO
             <div>
               <button
@@ -280,7 +280,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
               fontWeight: "300",
             }}
           >
-            {SentidoOrdenar == "Desc" ? (
+            {SentidoOrdenar === "Desc" ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="1.2rem"
@@ -403,7 +403,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
             </thead>
             <tbody style={{ borderTop: "solid 0.1rem #666" }}>
               {/*RENDERIZAR FILAS DE TABLA ARCHIVO*/}
-              {Busqueda == ""
+              {Busqueda === ""
                 ? currentPosts.map((e) => (
                     <FilaVistaBiblioteca
                       key={e.id}
@@ -420,7 +420,7 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
                   ))}
             </tbody>
           </table>
-          {Busqueda == "" ? (
+          {Busqueda === "" ? (
             <Paginacion
               postsPerPage={postsPerPage}
               totalPosts={extra.length}
