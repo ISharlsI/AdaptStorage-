@@ -30,19 +30,20 @@ if($_FILES['documento'])
         );
     }else
     {
-        $upload_name = $upload_dir.strtolower($archivo_name);
+        $upload_name = strtolower($archivo_name);
         $upload_name = preg_replace('/\s+/', '-', $upload_name);
-        $path = $server_url."/".$upload_name;
+        $path = $server_url.$upload_dir.$upload_name;
         $extension = pathinfo($path, PATHINFO_EXTENSION);
         $nombreArchivo = pathinfo($path, PATHINFO_FILENAME);
+        $nombre_original = pathinfo(($server_url.$upload_dir.$archivo_name), PATHINFO_FILENAME);
         
      
-        if(move_uploaded_file($archivo_tmp_name , $upload_name)) {
+        if(move_uploaded_file($archivo_tmp_name , $upload_dir.$upload_name)) {
             $response = array(
                 "status" => "success",
                 "error" => false,
                 "message" => "Archivo subido a la carpeta de localhost",
-                "url" => $server_url."/".$upload_name
+                "url" => $path
               );
 
             if($extension == 'txt'){
@@ -62,7 +63,7 @@ if($_FILES['documento'])
                 
             }else if($extension == 'docx'){
                 
-                $converter = new DocxToTextConversion($upload_dir.strtolower($archivo_name));
+                $converter = new DocxToTextConversion('uploads/'.$upload_name);
                 $contenido = $converter->convertToText();
 
             }else{
@@ -73,13 +74,14 @@ if($_FILES['documento'])
 
             date_default_timezone_set('America/Mexico_City');
             setlocale(LC_TIME, 'es_MX.UTF-8');
-            $fecha_actual = date("Y-m-d"); 
-            $sql = "INSERT INTO archivos (titulo, tipo, tamanio, ruta, fecha, contenido, nivel_seguridad, namePropietario) values ('$nombreArchivo', '$extension', '$size', '$upload_name', '$fecha_actual', '$contenido', '$nivelSeguridad', '$propietario' )";
+            $fecha_actual = date("Y-m-d");
+            $temp = $upload_dir.$upload_name;
+            $sql = "INSERT INTO archivos (titulo, tipo, tamanio, ruta, fecha, contenido, nivel_seguridad, namePropietario) values ('$nombre_original', '$extension', '$size', '$temp', '$fecha_actual', '$contenido', '$nivelSeguridad', '$propietario' )";
             if ($conn->query($sql) === TRUE) {
-                //echo json_encode(array('conectado'=>"Registrado en la base de datos"));
-              } else {
-                //echo json_encode(array('conectado'=>"Hubo un error al registrar en la base de datos"));
-              }
+                $response = array('conectado'=>"Registrado en la base de datos", 'error'=>'null');
+            } else {
+              $response = array('conectado'=>"Hubo un error al registrar en la base de datos", 'error'=>$conn->error);
+            }
         }else
         {
             $response = array(

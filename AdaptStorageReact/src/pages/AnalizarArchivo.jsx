@@ -107,7 +107,7 @@ function AnalizarArchivo() {
     //Gráfica de Barras Palabras/Lineas/Parrafos
     setGraficoPalabras({
       labels:[
-        'Contenido',
+        '',
       ],
       datasets:[{
         label:(cantPalabras + '. ' + 'Palabras'),
@@ -164,7 +164,7 @@ function AnalizarArchivo() {
 
       //Ordenar Palabras
     lista.sort(function(a,b) {
-      return ((a.cant > b.cant) ? -1 : ((a.cant == b.cant) ? 0 : 1))
+      return ((a.cant > b.cant) ? -1 : ((a.cant === b.cant) ? 0 : 1))
     });    
 
       //Primer Letra Mayuscula
@@ -180,6 +180,8 @@ function AnalizarArchivo() {
     const nombres = [];
     const datos = [];
     const colores = [];
+
+    console.log(URL_DESCARGA + Archivo.ruta);
 
     for (let i = 0; i < lista.length; i++) {
       if (lista[i].cant > 1) {
@@ -275,7 +277,6 @@ function AnalizarArchivo() {
         <div className='container-fluid'
         style={{
           position:'absolute',
-          border:'solid 2px green',
           zIndex: 1,
           }}>
           <div
@@ -508,22 +509,24 @@ function AnalizarArchivo() {
               gridRow: "2",
               height:'94%',
             }}>
-              {/*<iframe frameBorder="0" src={'https://docs.google.com/gview?url=' + URL_DESCARGA + Archivo.ruta + '&embedded=true'} style={{
+              
+              <iframe frameBorder="0" src={'https://docs.google.com/gview?url=' + URL_DESCARGA + Archivo.ruta + '&embedded=true'} style={{
                 border:'4px white solid',
                 borderRadius:'10px',
                 width:'90%',
                 marginTop:'1rem',
                 marginBottom:'1rem',
               }}>
-              </iframe>*/}
-              <iframe frameBorder="0" src={'https://docs.google.com/gview?url=' + 'https://adaptstorage.000webhostapp.com/AdaptStorage/uploads/tarea-3er-parcial-(juan-uribe---19310177).docx' + '&embedded=true'} style={{
+              </iframe>
+              {/*<iframe frameBorder="0" src={'https://docs.google.com/gview?url=' + 'https://adaptstorage.000webhostapp.com/AdaptStorage/uploads/tarea-3er-parcial-(juan-uribe---19310177).docx' + '&embedded=true'} style={{
                 border:'4px white solid',
                 borderRadius:'10px',
                 width:'90%',
                 marginTop:'1rem',
                 marginBottom:'1rem',
               }}
-              ></iframe>
+              ></iframe>*/}
+              
             </div>
           </div>
           <div

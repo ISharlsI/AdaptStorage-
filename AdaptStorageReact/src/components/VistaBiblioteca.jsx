@@ -45,9 +45,17 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
       process.env.REACT_APP_SERVER_URL + "mostrarDatos.php?orden=" + SentidoOrdenar + "&tipo=" + Ordenar + "&nivel=" + SesionUsuario.idTipoUsuario +
         ""
     );
-    console.log(res.data);
-    setExtra(res.data);
-    setTablaUsuarios(res.data);
+
+    //console.log(res);
+
+    if (res.data.includes('Undefined variable')) {
+      //console.log('tenemos problemas');
+    }
+    else{
+      setExtra(res.data);
+      setTablaUsuarios(res.data);
+    }
+    
   }
 
   function toggleDropdownOrdenar() {
@@ -420,6 +428,11 @@ function VistaBiblioteca({ toggleBiblio, refreshTablas }) {
                   ))}
             </tbody>
           </table>
+          {extra.length === 0 ? (
+            <h5 style={{textAlign:'center', margin:'2rem'}}>No hay nada que mostrar.</h5>
+          ) : ''
+          }
+          
           {Busqueda === "" ? (
             <Paginacion
               postsPerPage={postsPerPage}
