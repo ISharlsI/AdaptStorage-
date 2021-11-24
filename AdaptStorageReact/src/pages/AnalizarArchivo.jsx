@@ -181,8 +181,6 @@ function AnalizarArchivo() {
     const datos = [];
     const colores = [];
 
-    console.log(URL_DESCARGA + Archivo.ruta);
-
     for (let i = 0; i < lista.length; i++) {
       if (lista[i].cant > 1) {
         nombres.push(lista[i].cant + '. ' + lista[i].palabra);

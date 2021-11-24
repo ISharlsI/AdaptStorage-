@@ -76,7 +76,7 @@ if($_FILES['documento'])
             setlocale(LC_TIME, 'es_MX.UTF-8');
             $fecha_actual = date("Y-m-d");
             $temp = $upload_dir.$upload_name;
-            $sql = "INSERT INTO archivos (titulo, tipo, tamanio, ruta, fecha, contenido, nivel_seguridad, namePropietario) values ('$nombre_original', '$extension', '$size', '$temp', '$fecha_actual', '$contenido', '$nivelSeguridad', '$propietario' )";
+            $sql = "INSERT INTO archivos (titulo, tipo, tamanio, ruta, fecha, contenido, nivel_seguridad, namePropietario) values ('$nombre_original', '$extension', '$size', '$temp', '$fecha_actual', '".$conn->real_escape_string($contenido)."', '$nivelSeguridad', '$propietario' )";
             if ($conn->query($sql) === TRUE) {
                 $response = array('conectado'=>"Registrado en la base de datos", 'error'=>'null');
             } else {
