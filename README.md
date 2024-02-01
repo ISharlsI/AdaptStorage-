@@ -5,4 +5,5 @@ Adapt Storage es un sitio web que simula un almacenamiento en la nube para archi
 <br>
 Login
 <br>
-<img src = "public/Capturas/Login.png">
+
+![Login](https://github.com/IamSharls/AdaptStorage-/blob/master/AdaptStorageReact/public/Capturas/Login.png)
