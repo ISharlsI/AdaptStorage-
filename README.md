@@ -7,9 +7,23 @@ Adapt Storage es un sitio web que simula un almacenamiento en la nube para archi
 
 <p align="center">
   <img width="350px" height="500px" src="https://github.com/IamSharls/AdaptStorage-/blob/master/AdaptStorageReact/public/Capturas/Login.png" alt="Login">
-  <img width="350px" height="500px" src="https://github.com/IamSharls/AdaptStorage-/blob/master/AdaptStorageReact/public/Capturas/Registro.png" alt="Login">
+  <img width="350px" height="500px" src="https://github.com/IamSharls/AdaptStorage-/blob/master/AdaptStorageReact/public/Capturas/Registro.png" alt="Registro">
 </p>
 
+<h3>Vista biblioteca</h3>
+<p align="center">
+  <img src="https://github.com/IamSharls/AdaptStorage-/blob/master/AdaptStorageReact/public/Capturas/VistaBiblio.png" alt="Vista Biblioteca">
+</p>
+
+<h3>Vista administración usuarios</h3>
+<p align="center">
+  <img src="https://github.com/IamSharls/AdaptStorage-/blob/master/AdaptStorageReact/public/Capturas/VistaUser.png" alt="Vista Usuarios">
+</p>
+
+<h3>Análisis archivos</h3>
+<p align="center">
+  <img src="https://github.com/IamSharls/AdaptStorage-/blob/master/AdaptStorageReact/public/Capturas/Analisis.png" alt="Análisis archivos">
+</p>
 
 ## Miembros del equipo
 
